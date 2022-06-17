@@ -1,12 +1,12 @@
 from core.technical import log_manag as log_manag
+from core.gui import menu as menu
 
 log_manag.run()
 
-while True:
-    try:
-        pass
-    except:
-        pass
+try:
+    menu.run()
+except:
+    pass
 
 #from tkinter import *
 #from tkinter import ttk

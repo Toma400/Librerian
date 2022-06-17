@@ -1,11 +1,11 @@
 class Entry:
 
     # ------------------------------------------------
-    # OBLIGATORY VALUES
+    # NON-OBLIGATORY VALUES
     # ------------------------------------------------
     comment: str = ""
     tags: list = []
-    #avatar: resource = None
+    avatar: str = None
 
     # ------------------------------------------------
     # MAIN BODY
@@ -22,3 +22,5 @@ class Entry:
         return self.comment
     def getTags (self):
         return self.tags
+    def getAvatar (self):
+        return self.avatar
