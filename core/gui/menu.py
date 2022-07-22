@@ -1,11 +1,11 @@
-from core.technical.repo_manag import tomlm as t; tf = t(); tf = tf["Titlebar"]
+from core.technical.repo_manag import tomlm as t; titlebar = t(); titlebar = titlebar["Titlebar"]
 import logging as log
 import PySimpleGUI as gui
 import path_mg as p
 
 name = "Librerian"
-colour_text = tf["text_colour"]
-colour_back = tf["background_colour"]
+colour_text = titlebar["text_colour"]
+colour_back = titlebar["background_colour"]
 
 def runWindow():
     flayout = [
