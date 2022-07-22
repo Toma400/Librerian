@@ -12,3 +12,7 @@ def file_deleting (pathage):
   except FileNotFoundError:
     pass
   del shutil
+
+def tomlm (pathage="theme.toml"):
+  import toml
+  return toml.load(pathage)
