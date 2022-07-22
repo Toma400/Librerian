@@ -3,8 +3,8 @@ class Entry:
     # ------------------------------------------------
     # NON-OBLIGATORY VALUES
     # ------------------------------------------------
-    comment: str = ""
-    tags: list = []
+    comment: str = ""  # look here ----------------------------------> this can be also made in a way that instead of string, it would create new class which would
+    tags: list = []  #                                                 create the text file and put name referrence in .json file, so it can be read afterwards
     avatar: str = None
 
     # ------------------------------------------------
