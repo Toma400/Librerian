@@ -16,6 +16,8 @@ class BookEntry(Entry):
     date_of_reading: int = None
     dates_of_rereading: list = []
     rereading_amount = len(dates_of_rereading)
+    book_tags: list = []  # tags exclusive to books
+    # can be genres tag, but can be also more broadly
     # ------------------------------------------------
     # Book data
     original_title: str = ""
