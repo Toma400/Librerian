@@ -7,7 +7,7 @@ import traceback
 log_manag.run()
 
 try:
-    menu.run()
+    menu.runAccount()
 except:
     print("---------------------------------------------------------")
     log.critical("Main chain stopped. Printing the issue.", exc_info=True)

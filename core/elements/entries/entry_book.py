@@ -1,4 +1,4 @@
-from core.objects.blank_entry import Entry
+from core.elements.entries.blank_entry import Entry
 
 
 class BookEntry(Entry):

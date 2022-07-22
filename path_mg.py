@@ -6,8 +6,9 @@ import sys
 ########################
 folders = ['core',
            'gui',
-           'objects',
-           'technical']
+           'elements',
+           'technical',
+           'entries']
 
 def initialise_path():
     for i in folders:
