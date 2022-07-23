@@ -1,0 +1,15 @@
+© 2022 Tomasz Stępień All Rights Reserved
+
+You can freely use the software for its destined purposes, as well as edit the files for
+your own needs, but you should not redistribute the files. Changing the files can be only
+in two contexts:
+- forking the repository to make pull request later (supporting the development)
+- creating language files (see the change of license for them below)
+
+Exception of ARR license are language files which are considered as CC-0.
+All rights for translations creation belong to their respective creators and editors, though
+the files are open to be edited, copied and created by anyone willing to do so.
+
+---
+License will be changed in the future, to open more possibilities - current ARR license
+is just a placeholder for extremely early development stage.
