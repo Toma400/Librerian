@@ -9,5 +9,5 @@
 # any of them.
 # ---------------------------------------------------------------------------
 
-login__choose_account = "Choose your account"
-login__enter = "Enter"
+login__choose_account = "Wybierz swoje konto"
+login__enter = "Wejdź"

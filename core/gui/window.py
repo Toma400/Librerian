@@ -15,7 +15,7 @@ def runWindow():
             [gui.Listbox(
                 values=[], size=(40,20), key=":Accounts"
             )],
-            [gui.Button("Enter")]
+            [gui.Button(langtxt("login__enter", lang))]
         ]
     ]
     window = gui.Window(title=m.name, layout=flayout, margins=(700, 500))
