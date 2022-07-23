@@ -6,13 +6,6 @@ from core.gui import window as window
 import logging as log
 import traceback
 
-#--------------|--------------------------------
-# BASIC INFO   |
-#--------------|--------------------------------
-name = "Librerian"
-status = "Alpha"
-version = "0.1"
-
 log_manag.run()
 try:
     win = window.runWindow(); log.info("Window succesfully initialised!"); win.read()

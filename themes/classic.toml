@@ -5,5 +5,18 @@
 # ---------------------------------------------------------------------------
 
 [Titlebar]
-text_colour       = "#C4A989" #| C4A989
-background_colour = "#8A5921" #| 8A5921
+text_colour             = "#C4A989" #| C4A989
+background_colour       = "#60482B" #| 60482B
+
+[Main]
+text_colour             = "#C4A989" #| C4A989
+background_colour       = "#8E704B" #| 8E704B
+button_colour           = "#60482B" #| 60482B
+scroll_colour           = "#60482B" #| 60482B
+
+[List]
+text_colour             = "#A86511" #| A86511
+background_colour       = "#D1C4B4" #| D1C4B4
+highlight_colour        = "#E2B277" #| E2B277
+text_highlight_colour   = "#8D540D" #| 8D540D
+scroll_colour           = "#60482B" #| 60482B
