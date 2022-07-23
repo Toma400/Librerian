@@ -1,0 +1,9 @@
+# ---------------------------------------------------------------------------
+# LIBRERIAN THEME
+# ------------------------
+# This file contains values for Librerian theme. Edit the values below.
+# ---------------------------------------------------------------------------
+
+[Titlebar]
+text_colour       = "#C4A989" #| C4A989
+background_colour = "#8A5921" #| 8A5921

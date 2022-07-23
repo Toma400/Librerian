@@ -6,6 +6,7 @@
 #-----------------------------------------------------------
 import PyInstaller.__main__
 import PyInstaller
+import main as m
 from distutils.dir_util import copy_tree
 from repo_manag import file_deleting as delete
 
@@ -24,7 +25,7 @@ class DefaultRun:
     # ----------------------------------------------------------------------
     # directory of the game
     core_path = "D:/Ministerstwo Kalibracyjne/PyCharm_Projects/Librerian/"
-    name = "Librerian"
+    name = m.name
     icon_path = core_path + "core/icon.ico"
     # directory for outcome
     export_path = "D:/Ministerstwo Kalibracyjne/PyCharm_Projects/[builds]/"

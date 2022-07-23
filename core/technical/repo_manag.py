@@ -32,7 +32,7 @@ def dir_lister (path):
 #-------------------|----------------------
 # TOML MANAGEMENT   |
 #-------------------|----------------------
-def tomlm (pathage="theme.toml"):
+def tomlm (pathage: str):
   import toml
   return toml.load(pathage)
 
