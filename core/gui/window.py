@@ -1,4 +1,5 @@
 from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
+from core.technical.repo_manag import dir_lister as repo; accs: list = repo("accounts/")
 from core.technical.repo_manag import lang_reader as langtxt
 import logging as log
 import PySimpleGUI as gui
@@ -13,7 +14,7 @@ def runWindow():
         [
             [gui.Text(langtxt("login__choose_account", lang), text_color=m.colour_text)],
             [gui.Listbox(
-                values=[], size=(40,20), key=":Accounts"
+                values=accs, size=(40,20), key=":Accounts"
             )],
             [gui.Button(langtxt("login__enter", lang))]
         ]

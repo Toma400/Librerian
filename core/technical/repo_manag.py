@@ -18,6 +18,17 @@ def file_deleting (pathage):
     pass
   del shutil
 
+#----------------------
+# LISTERS
+#----------------------
+def repo_lister (path, dtype: str, ext="None"):
+  if dtype == "dir": dir_lister (path)
+
+def dir_lister (path):
+  from os import listdir
+  from os.path import isdir, join
+  return [f for f in listdir(path) if isdir(join(path, f))]
+
 #-------------------|----------------------
 # TOML MANAGEMENT   |
 #-------------------|----------------------
