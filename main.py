@@ -1,13 +1,19 @@
 import path_mg as p; p.initialise_path()
+from core.elements.account import Account
 from core.technical import log_manag as log_manag
 from core.gui import menu as menu
+from core.gui import window as window
 import logging as log
 import traceback
 
 log_manag.run()
-
 try:
-    menu.runAccount()
+    win = window.runWindow(); log.info("Window succesfully initialised!"); win.read()
+    acc: Account = menu.runAccount(win)
+    menu.runMain(acc, win)
+    win.close()
+except KeyboardInterrupt:
+    pass
 except:
     print("---------------------------------------------------------")
     log.critical("Main chain stopped. Printing the issue.", exc_info=True)

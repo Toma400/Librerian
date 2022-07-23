@@ -1,0 +1,12 @@
+# ---------------------------------------------------------------------------
+# LANGUAGE FILE
+# ------------------------
+# Language files are meant to support multilingualistic experience for
+# Librerian. They can have any name supported by Librerian natively, or
+# any name ever, if you edit 'settings.toml' manually.
+#
+# Keys in this file are used for user interface, so be sure to not remove
+# any of them.
+# ---------------------------------------------------------------------------
+
+login__choose_account = "Choose your account"

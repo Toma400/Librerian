@@ -1,0 +1,10 @@
+# ---------------------------------------------------------------------------
+# LIBRERIAN SETTINGS
+# ------------------------
+# You can find all settings of the software here. They should be later
+# accessible by the program itself, but at the current stage, this isn't
+# supported yet.
+# ---------------------------------------------------------------------------
+
+[General]
+language = "english"
