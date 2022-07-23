@@ -11,3 +11,6 @@
 
 login__choose_account = "Wybierz swoje konto"
 login__enter = "Wejdź"
+login__add = "Dodaj nowe konto"
+login__new_account = "Wprowadź nazwę konta"
+login__confirm = "Potwierdź"

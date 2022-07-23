@@ -1,16 +1,20 @@
 import path_mg as p; p.initialise_path()
-from core.elements.account import Account
 from core.technical import log_manag as log_manag
-from core.gui import menu as menu
 from core.gui import window as window
+import PySimpleGUI as gui
 import logging as log
 import traceback
 
 log_manag.run()
+log.debug(p.path_info())
 try:
-    win = window.runWindow(); log.info("Window succesfully initialised!"); win.read()
-    acc: Account = menu.runAccount(win)
-    menu.runMain(acc, win)
+    win = window.runWindow("login_layout"); log.info("Window succesfully initialised!");
+    event = win.read()
+    while True:
+        #acc: Account = menu.runAccount(win)
+        #win = window.runWindow("logadd_layout"); log.info("Window succesfully initialised!"); win.read()
+        if event == gui.WINDOW_CLOSED:
+            break
     win.close()
 except KeyboardInterrupt:
     pass

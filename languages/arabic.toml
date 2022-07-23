@@ -11,3 +11,6 @@
 
 login__choose_account = "اختر حسابك"
 login__enter = "ادخل"
+login__add = "Add new account"
+login__new_account = "Enter the name of your account"
+login__confirm = "Confirm"

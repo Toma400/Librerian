@@ -1,0 +1,17 @@
+[2022-07-23 23:58:13,552] [INFO] [Initialising window...]
+[2022-07-23 23:58:13,552] [INFO] [Window succesfully initialised!]
+[2022-07-23 23:58:17,099] [DEBUG] [
+    ---------------------------------------------------------------------------------------
+    Hello in Librerian! 
+    This is program initialisation message which will prompt you all important informations
+    on current processes. All further info will be wrote during program running.
+    
+    Printing the path of the program:
+    ['D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian', 'D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\python38.zip', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\DLLs', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\lib', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages', 'D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian\\entries']
+    The path should include folders named as core, gui, elements and 
+    others - if those are not provided, issue with the program may be related to incorrect
+    path system.
+    ---------------------------------------------------------------------------------------
+    ]
+[2022-07-23 23:58:17,112] [INFO] [Initialising window...]
+[2022-07-23 23:58:17,113] [INFO] [Window succesfully initialised!]
