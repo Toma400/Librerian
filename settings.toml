@@ -1,11 +1,12 @@
-# ---------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # LIBRERIAN SETTINGS
 # ------------------------
 # You can find all settings of the software here. They should be later
 # accessible by the program itself, but at the current stage, this isn't
 # supported yet.
-# ---------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 
 [General]
-language = "English"
-theme = "Classic"
+language      = "English"          #| Filename. All languages can be found in /languages/
+theme         = "Classic"          #| Filename. All themes can be found in /themes/
+window        = "Fullscreen"       #| Can be 'Fullscreen' or 'Small'

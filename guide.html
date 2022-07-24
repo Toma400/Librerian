@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+<title>Librerian Guide</title>
+</head>
+<body>
+<h1><center>Librerian Guide</center></h1>
+<center>
+    <img src="core/icon.png" class="center" width="200" height="200">
+</center>
+<p>
+    <h1>Welcome in Librerian Guide!</h1>
+
+    Although usual Librerian experience was made to be as simple as possible, you can still want to find some clarification, or
+    tutorial on a bit more complex elements of the program.
+
+    <hr>
+    <h2>Table of contents:</h2>
+    <ul>
+        <li>What is Librerian?</li>
+        <li>Settings use</li>
+        <li>Custom themes</li>
+        <li>Translation contributions</li>
+        <li>Adding new types of data</li>
+    </ul>
+
+    <hr><br>
+    <center><h2>Contact</h2></center>
+
+    <center>
+    <a href="https://discord.gg/GbTw9KqnrE"><b>Discord server</b></a><br>
+    <a href="https://twitter.com/TheTrueToma400"><b>Twitter</b></a><br>
+    <a href="https://github.com/Toma400/Librerian"><b>GitHub</b></a> | currently private<br>
+    <a href="mailto:thomasso_calgori@o2.pl"><b>Mail</b></a> | thomasso_calgori@o2.pl<br><br>
+    Those are some links you can find useful if you'd like to contact me in any way.
+    </center>
+
+    <hr><br>
+    <center><h2>What is Librarian?</h2></center>
+
+    <b>Librarian</b> is free, open-source software developed by Tomasz Stępień (known also by nickname Toma400) since 2022.<br>
+    It is <b>culture collection manager</b>, as I like to call it, allowing you to create library of various elements of culture
+    you like (such as books, movies, games, anime, music and so on).<br>
+    In its core functionality Librerian was made to be alternative of services such as GoodReads, IMDB, Last.fm and others.<br><br>
+
+    Librerian, though, puts less care on having rich database for data you don't have any contact with, and <b>more care on things
+    you actually store</b>. From my own user experience, I missed a lot feature of adding multiple rewatching dates, samely as
+    rewatch count itself - such things will be added once Librerian development stage is finished.<br>
+    Additionally, I wanted to put a lot of care on users having a way to customise their data - so not only
+    you will be able to customise themes, but in the future, I plan on adding pretty easy system of expanding Librerian elements.
+
+    So, about the customisation, let's look what is currently available (in dev-builds).
+
+    <hr><br>
+    <center><h2>Settings use</h2></center>
+
+    First thing after unpacking program files you will encounter is <code>settings.toml</code> file in the folder. TOML files are actually
+    configuration files, openable easily with notebook. Since dev-builds are pretty raw versions of the program, editing this
+    file is the only way for you to access the settings - for now!<br><br>
+
+    So, open the file. You should see something like this:
+    <pre>
+        <code>language = "English"</code>
+        <code>theme = "Classic"</code>
+        <code>window = "Fullscreen"</code>
+    </pre>
+    Those are under <code>[General]</code> category, so you know that those settings apply to whole program and refer to common
+    use of it. So, explaining them:
+    <ul>
+        <li><b>language</b></li> - this setting needs to be named with respective language file name stored in <code>languages</code> folder. It changes user interface to specific language. If language is wrongly set, it changes to default (English)
+        <li><b>theme</b></li> - themes are colour palettes creating Librerian's look. Themes are stored in <code>themes</code> folder, and name you put in settings should be the same as file in said folder
+        <li><b>window</b></li> - this setting changes whether or not Librerian opens with full screen, or minimised. Setting here takes <code>Fullscreen</code> value (for full screen) or <code>Small</code> (for minimised). Use of different value will make window use default value (full screen)
+    </ul>
+
+    <hr><br>
+    <center><h2>Custom themes</h2></center>
+
+    One of currently available customisations you can already create is <b>theme</b>, being palette of colours used by the program to showcase
+    whole interface.<br>
+    Themes are stored in <code>themes</code> folder, so all .toml files put there will be instantly recognised as such.<br><br>
+
+    The easiest way of creating theme is just copying any default theme and changing in values. Here we have <code>Classic</code> theme code:
+
+    <pre>
+        <code>[Titlebar]</code>
+        <code>text_colour             = "#C4A989" #| C4A989</code>
+        <code>background_colour       = "#60482B" #| 60482B</code>
+
+        <code>[Main]</code>
+        <code>text_colour             = "#C4A989" #| C4A989</code>
+        <code>background_colour       = "#8E704B" #| 8E704B</code>
+        <code>button_colour           = "#60482B" #| 60482B</code>
+
+        <code>[List]</code>
+        <code>text_colour             = "#A86511" #| A86511</code>
+        <code>background_colour       = "#D1C4B4" #| D1C4B4</code>
+        <code>highlight_colour        = "#E2B277" #| E2B277</code>
+        <code>text_highlight_colour   = "#8D540D" #| 8D540D</code>
+        <code>scroll_colour           = "#60482B" #| 60482B</code>
+    </pre>
+
+    Text within the brackets is used as a category, so you know what part of the program keys are referring to. So, for example, <code>text_colour</code>
+    in <code>[Titlebar]</code> means text appearing on titlebar of the program (the bar with minimizing/exiting symbols).<br><br>
+
+    Themes support html colour codes (or hexcodes), which have easily recognisable "#" symbol before them. To change the colour, simply replace
+    old hexcode with new hexcode within the brackets.<br>
+    "#|" signifies comment, which - in this case - shows default value of the theme. Because yes, if you would like to change already available
+    themes, you can work on it. Commented default values are here to help you if you'd feel you preferred old version of the theme.
+
+    <hr><br>
+    <center><h2>Translation contributions</h2></center>
+
+    Librerian is made for English language, but it does support other languages thanks to modular system. Basically
+    any .toml file you put in <code>languages</code> folder is recognised as language file. The way it works is really similar to themes, actually.<br><br>
+
+    But, languages are thing more natively important for Librerian - since new language file means whole new nation can use the program without need of
+    learning English! So, would be neat to contribute, so our language file can get added to official Librerian files, right?<br>
+    Absolutely! Unfortunately, until development stage is over, I will not make Librerian GitHub public. This makes translation contributions a bit more tricky.<br>
+    But worry not. At the top section, I gave you some ways to contact me - and although this way of contribution is harder, it will be greatly appreciated as well.
+
+    <hr><br>
+    <center><h2>Adding new types of data</h2></center>
+
+    Unfortunately, at current stage of Librerian, there's no way to add new type of data, in any way possible. It will get added in near future, though.<br><br>
+
+</p>
+
+</body>
+</html>
