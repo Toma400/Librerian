@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------
+# LIBRERIAN THEME
+# ------------------------
+# This file contains values for Librerian theme. Edit the values below.
+# Default value is put in the comment after value.
+# ---------------------------------------------------------------------------
+
+[Titlebar]
+text_colour             = "#999591" #| 999591
+background_colour       = "#000000" #| 000000
+
+[Main]
+text_colour             = "#B3AAAA" #| B3AAAA
+background_colour       = "#494643" #| 494643
+button_colour           = "#85858D" #| 85858D
+
+[List]
+text_colour             = "#B3AAAA" #| B3AAAA
+background_colour       = "#64605C" #| 64605C
+highlight_colour        = "#75716C" #| 75716C
+text_highlight_colour   = "#C2B9B9" #| C2B9B9
+scroll_colour           = "#85858D" #| 85858D

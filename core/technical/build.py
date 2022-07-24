@@ -6,9 +6,10 @@
 #-----------------------------------------------------------
 import PyInstaller.__main__
 import PyInstaller
-import main as m
+import os; fpath = os.path.dirname(os.path.abspath("build.py"))
 from distutils.dir_util import copy_tree
 from repo_manag import file_deleting as delete
+from repo_manag import tomlm as t; m = t(f"{fpath}/init.toml")
 
 #-----------------------------------------------------------
 # FORGE
@@ -24,8 +25,8 @@ class DefaultRun:
     # Adjust values here to make build customised more to your needs
     # ----------------------------------------------------------------------
     # directory of the game
-    core_path = "D:/Ministerstwo Kalibracyjne/PyCharm_Projects/Librerian/"
-    name = m.name
+    core_path = f"{fpath}/"
+    name = m["name"]
     icon_path = core_path + "core/icon.ico"
     # directory for outcome
     export_path = "D:/Ministerstwo Kalibracyjne/PyCharm_Projects/[builds]/"

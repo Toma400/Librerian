@@ -13,7 +13,6 @@ background_colour       = "#60482B" #| 60482B
 text_colour             = "#C4A989" #| C4A989
 background_colour       = "#8E704B" #| 8E704B
 button_colour           = "#60482B" #| 60482B
-scroll_colour           = "#60482B" #| 60482B
 
 [List]
 text_colour             = "#A86511" #| A86511
