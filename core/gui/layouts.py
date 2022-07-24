@@ -34,7 +34,7 @@ login_layout = [
                 values=accs, size=(40,20), key=":Accounts",
                 text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg, highlight_background_color=ls_high
             )],
-            [gui.Button(langtxt("login__enter", lang)), gui.Button(langtxt("login__add", lang))]
+            [gui.Button(langtxt("login__enter", lang)), gui.Button(langtxt("login__add", lang), key=":AddAccount")]
         ]
 ]
 
@@ -44,7 +44,7 @@ logadd_layout = [
         ],
         [
             [gui.Text(langtxt("login__new_account", lang), text_color=mn_text, background_color=mn_back),
-             gui.In(size=(25, 1), enable_events=True, key=":NAME")],
-            [gui.Button(langtxt("login__confirm", lang))]
+             gui.In(size=(25, 1), enable_events=True, key=":NewAccountName")],
+            [gui.Button(langtxt("login__confirm", lang), key=":ConfirmAccountCreation")]
         ]
 ]
