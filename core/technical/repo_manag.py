@@ -48,7 +48,7 @@ def lang_reader (key: str, lang="english"):
   except FileNotFoundError:
     log.warning(f"Language {lang} not found, changing to default one.")
     try:
-      file = tomlm("languages/english.toml")
+      file = tomlm("languages/English.toml")
       return file[key]
     except FileNotFoundError:
       log.critical("Default language file removed. Please redownload the software or language file.")

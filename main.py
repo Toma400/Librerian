@@ -1,21 +1,30 @@
 import path_mg as p; p.initialise_path()
-from core.technical import log_manag as log_manag
+from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
+from core.technical import log_manag as log_manag; log_manag.run()
 from core.gui import window as window
+from core.gui import events as events
 import PySimpleGUI as gui
 import logging as log
 import traceback
 
-log_manag.run()
 log.debug(p.path_info())
 try:
-    win = window.runWindow("login_layout"); log.info("Window succesfully initialised!");
-    event = win.read()
+    win = window.runWindow("login_layout", True); log.info("Window succesfully initialised!")
     while True:
-        #acc: Account = menu.runAccount(win)
-        #win = window.runWindow("logadd_layout"); log.info("Window succesfully initialised!"); win.read()
-        if event == gui.WINDOW_CLOSED:
+        event, values = win.read()
+        win.refresh()
+        win, event, values = events.eventReader(win, event, values)
+        #if event == ":NewAccountName" and event == ":ConfirmAccountCreation":
+            #print (values[":NewAccountName"])
+        #if event == ":ConfirmAccountCreation":
+        #    accname = values[":NewAccountName"]
+        #    if accname: os.mkdir("/accounts/{accname}")
+        #    win.close();
+        #    win = initwin;
+        #    log.info("Window succesfully reinitialised!")
+        #    win.refresh()
+        if event == gui.WINDOW_CLOSED or event == ":Exit":
             break
-    win.close()
 except KeyboardInterrupt:
     pass
 except:
