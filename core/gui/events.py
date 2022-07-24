@@ -27,4 +27,4 @@ def eventReader(win: Window, event: str, values):
     if event == gui.WINDOW_CLOSED or event == ":Exit":
         win.close()
     else:
-        return win, event, values
+        return win

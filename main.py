@@ -13,16 +13,7 @@ try:
     while True:
         event, values = win.read()
         win.refresh()
-        win, event, values = events.eventReader(win, event, values)
-        #if event == ":NewAccountName" and event == ":ConfirmAccountCreation":
-            #print (values[":NewAccountName"])
-        #if event == ":ConfirmAccountCreation":
-        #    accname = values[":NewAccountName"]
-        #    if accname: os.mkdir("/accounts/{accname}")
-        #    win.close();
-        #    win = initwin;
-        #    log.info("Window succesfully reinitialised!")
-        #    win.refresh()
+        win = events.eventReader(win, event, values)
         if event == gui.WINDOW_CLOSED or event == ":Exit":
             break
 except KeyboardInterrupt:
