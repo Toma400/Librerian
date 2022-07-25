@@ -43,6 +43,24 @@ def file_lister (path, ext="None"):
       listed2.append(i.replace("." + ext, ""))
     return listed2
 
+@DeprecationWarning
+#| Deprecated since this function returns objects, not
+#| strings; and strings can be easily imported with
+#| __import__(x) function
+#|-----------------------------------------------------
+def module_importer (path: str):
+  #| returns list of modules, does not import
+  #| use [from x import *] to make import
+  import os, glob, imp; modulesdict = {}
+  for path in glob.glob(f'{path}/[!_]*.py'):
+    name, ext = os.path.splitext(os.path.basename(path))
+    modulesdict[name] = imp.load_source(name, path)
+  modules = []
+  for value in modulesdict.values():
+    modules.append(value)
+  print(modules)
+  return modules
+
 #-------------------|------------------------------------
 # TOML MANAGEMENT   |
 #-------------------|------------------------------------

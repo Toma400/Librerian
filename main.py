@@ -10,7 +10,7 @@ import traceback
 
 log.debug(p.path_info())
 try:
-    win = window.runFWindow(login_layout(), True); log.info("Window succesfully initialised!")
+    win = window.runFWindow(login_layout(), init=True); log.info("Window succesfully initialised!")
     accname = "" #| value before logging (overwritten by :EnterAccount event)
     while True:
         event, values = win.read()
@@ -28,7 +28,13 @@ except:
     log.critical("Main chain stopped. Printing the issue.", exc_info=True)
     traceback.print_exc()
     print("\n---------------------------------------------------------")
-    print("Found an error! See the message above for details")
-    print("You can send message above to developer, reporting the issue")
+    print('''
+    Found an error! See the message above for details. 
+    You can send message above to developer, reporting the issue.
+    
+    If you would like to send the error, please also take a look at "/logs" folder.
+    You can provide developer latest log file, with name using newest date.
+    This will help recognising the issue a lot faster.
+    ''')
     print("\nEnter any key to close the game")
     temp_var = input("")

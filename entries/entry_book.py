@@ -3,6 +3,7 @@ from core.elements.blank_entry import Entry
 
 class BookEntry(Entry):
     entry_langkey = "entry__book"
+    folder_key = "books"
     # ------------------------------------------------
     # OBLIGATORY VALUES
     # ------------------------------------------------

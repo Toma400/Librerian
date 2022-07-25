@@ -3,8 +3,11 @@ from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
 from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import lang_reader as langtxt
+from core.technical.repo_manag import module_importer
+from core.technical.repo_manag import file_lister
 from core.elements.blank_entry import Entry
 import PySimpleGUI as gui
+import logging as log
 
 #--------------|----------------------------------
 # THEME        |
@@ -56,8 +59,14 @@ logadd_layout = [
 # MAIN MENU SECTION
 #-------------------------------------------------
 def menu_layout():
-    entries = Entry.__subclasses__(); templist = []
-    for i in entries:
+    modules = file_lister("entries/", ext="py")
+    for x in modules: #| imports all modules from /entries/ folder
+        x1 = x.replace("\\", "."); x2 = x1.replace("\\", ".")
+        print (x2)
+        __import__(x2)
+    templist = []
+    for i in Entry.subclasses:
+        log.info(f"Recognised entry of ID: [{i}]. Loading the entry...")
         templist.append(
             [gui.Button(langtxt(i.entry_langkey, lang), key=f":{i.entry_langkey}")]
         )
