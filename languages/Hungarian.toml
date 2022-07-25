@@ -8,9 +8,13 @@
 # Keys in this file are used for user interface, so be sure to not remove
 # any of them.
 # ---------------------------------------------------------------------------
+# CONTRIBUTORS
+# - CrashGyuluka
 
 login__choose_account = "Válaszd ki a fiókodat"
 login__enter = "Belépés"
-login__add = "Add new account"
-login__new_account = "Enter the name of your account"
-login__confirm = "Confirm"
+login__add = "Új fiók hozzáadása"
+login__new_account = "Add meg a fiókod nevét"
+login__confirm = "Megerősítés"
+
+entry__book = "Könyvek"

@@ -10,10 +10,14 @@ import traceback
 log.debug(p.path_info())
 try:
     win = window.runWindow("login_layout", True); log.info("Window succesfully initialised!")
+    accname = ""
     while True:
         event, values = win.read()
         win.refresh()
         win = events.eventReader(win, event, values)
+        if event == ":EnterAccount":
+            try: accname = (values[":AccountsListed"])[0]
+            except IndexError: pass
         if event == gui.WINDOW_CLOSED or event == ":Exit":
             break
 except KeyboardInterrupt:

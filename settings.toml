@@ -9,4 +9,4 @@
 [General]
 language      = "English"          #| Filename. All languages can be found in /languages/
 theme         = "Classic"          #| Filename. All themes can be found in /themes/
-window        = "Fullscreen"       #| Can be 'Fullscreen' or 'Small'
+window        = "Small"            #| Can be 'Fullscreen' or 'Small'

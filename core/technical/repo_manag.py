@@ -1,8 +1,8 @@
 import logging as log
 
-#-------------------|----------------------
+#-------------------|------------------------------------
 # FILES MANAGEMENT  |
-#-------------------|----------------------
+#-------------------|------------------------------------
 def file_deleting (pathage):
   import os
   import shutil
@@ -18,27 +18,50 @@ def file_deleting (pathage):
     pass
   del shutil
 
-#----------------------
-# LISTERS
-#----------------------
+#-----------|--------------------------------------------
+# LISTERS   | Used to list specific types of files, such
+#           | as folders or entries
+#-----------|--------------------------------------------
 def repo_lister (path, dtype: str, ext="None"):
   if dtype == "dir": dir_lister (path)
+  if dtype == "file": file_lister (path, ext)
 
 def dir_lister (path):
   from os import listdir
   from os.path import isdir, join
   return [f for f in listdir(path) if isdir(join(path, f))]
 
-#-------------------|----------------------
+def file_lister (path, ext="None"):
+  if ext is None:
+    from os import listdir
+    from os.path import isfile, join
+    return [f for f in listdir(path) if isfile(join(path, f))]
+  else:
+    import glob; listed = glob.glob(path + "*." + ext); listed2 = []
+    for i in listed:
+      i = i.replace(path, "")
+      listed2.append(i.replace("." + ext, ""))
+    return listed2
+
+def entry_lister ():  # not sure if this works actually
+  path = "/core/elements/entries/"
+  incl = "entry"; excl = "blank_entry"
+  lister = file_lister(path, "py"); lister2 = []
+  for i in lister:
+    if i.__contains__(incl) and not i.__contains__(excl):
+      lister2.append(i)
+  return lister2
+
+#-------------------|------------------------------------
 # TOML MANAGEMENT   |
-#-------------------|----------------------
+#-------------------|------------------------------------
 def tomlm (pathage: str):
   import toml
   return toml.load(pathage)
 
-#------------|-----------------------------
+#------------|-------------------------------------------
 # LANGUAGE   |
-#------------|-----------------------------
+#------------|-------------------------------------------
 def lang_reader (key: str, lang="english"):
   try:
     file = tomlm(f"languages/{lang}.toml")

@@ -14,3 +14,5 @@ login__enter = "Enter"
 login__add = "Add new account"
 login__new_account = "Enter the name of your account"
 login__confirm = "Confirm"
+
+entry__book = "Books"

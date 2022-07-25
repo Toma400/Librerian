@@ -22,6 +22,16 @@ def eventReader(win: Window, event: str, values):
         accname = values[":NewAccountName"]; result = acc.createAccount(accname)
         if result: win.close(); win = window.runWindow("login_layout"); log.info("Window successfully reinitialised!")
     # -------------------------------------------------------------------|
+    # Event passing account name to further use; operated on main.py     |
+    # module actually                                                    |
+    # -------------------------------------------------------------------|
+    elif event == ":EnterAccount":
+        accname = values[":AccountsListed"]
+        try:
+            log.info(f"Attempted to log into account: {accname[0]}")
+            win.close() # temporary closing
+        except IndexError: log.debug("No accounts selected or made, login attempt failed.")
+    # -------------------------------------------------------------------|
     # Event finishing the program                                        |
     # -------------------------------------------------------------------|
     if event == gui.WINDOW_CLOSED or event == ":Exit":

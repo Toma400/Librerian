@@ -44,14 +44,18 @@ class DefaultRun:
         "--name=" + name,
         "--icon=" + icon_path,
         "--distpath=" + export_path + name + "/",
-        "--workpath=" + core_path + "logs/cache/pyinstaller",
-        "--specpath=" + core_path + "logs/cache/pyinstaller"
+        "--workpath=" + full_export_path + "logs/cache/pyinstaller",
+        "--specpath=" + full_export_path + "logs/cache/pyinstaller"
     ]
     ommitted_elements = [  # list of files that are deleted after finishing the build
         full_export_path + ".idea",
-        full_export_path + "__pycache__",
         full_export_path + ".gitignore",
-        full_export_path + "logs/cache/"
+        full_export_path + "logs/cache/",
+        full_export_path + "__pycache__",
+        full_export_path + "core/elements/__pycache__",
+        full_export_path + "core/__pycache__",
+        full_export_path + "gui/__pycache__",
+        full_export_path + "technical/__pycache__"
     ]
 
 # function used to delete elements excluded in list above
@@ -60,9 +64,6 @@ def file_deleting(delete_list):
     for i in delete_list:
         delete(delete_list[j])
         j += 1
-
-def cache_clearing():
-    delete("logs/cache/")
 
 # main function for running builder
 def forge():
@@ -74,4 +75,3 @@ def forge():
 
 # --------------------------------
 forge()
-cache_clearing()

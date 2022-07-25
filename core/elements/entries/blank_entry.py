@@ -1,5 +1,6 @@
 class Entry:
 
+    entry_langkey: "" #must be overriden in extended classes
     # ------------------------------------------------
     # NON-OBLIGATORY VALUES
     # ------------------------------------------------
