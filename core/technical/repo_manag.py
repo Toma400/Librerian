@@ -43,15 +43,6 @@ def file_lister (path, ext="None"):
       listed2.append(i.replace("." + ext, ""))
     return listed2
 
-def entry_lister ():  # not sure if this works actually
-  path = "/core/elements/entries/"
-  incl = "entry"; excl = "blank_entry"
-  lister = file_lister(path, "py"); lister2 = []
-  for i in lister:
-    if i.__contains__(incl) and not i.__contains__(excl):
-      lister2.append(i)
-  return lister2
-
 #-------------------|------------------------------------
 # TOML MANAGEMENT   |
 #-------------------|------------------------------------

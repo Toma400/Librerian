@@ -1,4 +1,4 @@
-from core.elements.entries.blank_entry import Entry
+from core.elements.blank_entry import Entry
 
 
 class BookEntry(Entry):
@@ -24,6 +24,7 @@ class BookEntry(Entry):
     original_title: str = ""
     year_of_publishing: int = None
     multiple_authors: list = []
+    series: dict = {} # key = name of series, value = number
 
     # ------------------------------------------------
     # MAIN BODY

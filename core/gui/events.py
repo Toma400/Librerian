@@ -1,11 +1,11 @@
+from core.gui.layouts import menu_layout, login_layout
 from core.elements import account as acc
 from core.gui import window as window
 from PySimpleGUI import Window
 import PySimpleGUI as gui
 import logging as log
-import os
 
-def eventReader(win: Window, event: str, values):
+def eventReader(win: Window, event: str, values, accname=""):
     #-------------|------------------------------------------------------|
     # LOGGING     | win.run() and win.refresh() are ommited because they |
     # SECTION     | are predefined in main.py loop                       |
@@ -19,17 +19,17 @@ def eventReader(win: Window, event: str, values):
     # possible error with the new account or not                         |
     # -------------------------------------------------------------------|
     elif event == ":ConfirmAccountCreation":
-        accname = values[":NewAccountName"]; result = acc.createAccount(accname)
-        if result: win.close(); win = window.runWindow("login_layout"); log.info("Window successfully reinitialised!")
+        acname = values[":NewAccountName"]; result = acc.createAccount(acname)
+        if result: win.close(); win = window.runFWindow(login_layout())
     # -------------------------------------------------------------------|
     # Event passing account name to further use; operated on main.py     |
     # module actually                                                    |
     # -------------------------------------------------------------------|
     elif event == ":EnterAccount":
-        accname = values[":AccountsListed"]
+        acname = values[":AccountsListed"]
         try:
-            log.info(f"Attempted to log into account: {accname[0]}")
-            win.close() # temporary closing
+            log.info(f"Attempted to log into account: {acname[0]}")
+            win.close(); win = window.runFWindow(menu_layout())
         except IndexError: log.debug("No accounts selected or made, login attempt failed.")
     # -------------------------------------------------------------------|
     # Event finishing the program                                        |

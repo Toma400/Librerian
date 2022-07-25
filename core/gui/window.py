@@ -17,11 +17,22 @@ ls_scrl = layouts.ls_scrl
 def runWindow(layout: str, init=False):
     log.info("Initialising the program window...") if init else log.info(f"Jumping into window >{layout}<")
     flayout = copy.deepcopy(getattr(layouts, layout)) # deepcopy helps avoiding reuse of the same layout object
+    window = makeWindow(flayout)
+    return window
+
+def runFWindow(layout, init=False): #| used for more sophisticated layouts using functions instead of variables
+    log.info("Initialising the program window...") if init else log.info(f"Jumping into functional window >{layout}<")
+    # ^ https://stackoverflow.com/questions/218616/how-to-get-method-parameter-names <- for {layout}
+    flayout = copy.deepcopy(layout)
+    window = makeWindow(flayout)
+    return window
+
+def makeWindow(flayout): #| window initialiser
     window = gui.Window(title=m["name"], layout=flayout, margins=(700, 500),                     #| general
                         resizable=True, no_titlebar=not winSet(), keep_on_top=winSet(),          #| objects
                         background_color=mn_back, button_color=mn_butt,                          #| colours
                         sbar_background_color=ls_scrl, sbar_arrow_color=mn_text, finalize=True)  #|
-    #stuff to add: resizable=True, maximized=dependent on settings, icon=fpath/scaling? [float]
+    # ^ stuff to add: resizable=True, maximized=dependent on settings, icon=fpath/scaling? [float]
     if winSet(): window.maximize()
     return window
 

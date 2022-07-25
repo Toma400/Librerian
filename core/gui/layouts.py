@@ -1,8 +1,9 @@
 from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
 from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme"] + ".toml")
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
-from core.technical.repo_manag import dir_lister as repo; accs: list = repo("accounts/")
+from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import lang_reader as langtxt
+from core.elements.blank_entry import Entry
 import PySimpleGUI as gui
 
 #--------------|----------------------------------
@@ -24,19 +25,22 @@ ls_scrl = (theme["List"])["scroll_colour"]
 #--------------|----------------------------------
 # LOGGING SECTION
 #-------------------------------------------------
-login_layout = [
-        [
-            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
-        ],
-        [
-            [gui.Text(langtxt("login__choose_account", lang), text_color=mn_text, background_color=mn_back)],
-            [gui.Listbox(
-                values=accs, size=(40,20), key=":Accounts",
-                text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg, highlight_background_color=ls_high
-            )],
-            [gui.Button(langtxt("login__enter", lang)), gui.Button(langtxt("login__add", lang), key=":AddAccount")]
-        ]
-]
+def login_layout():
+    accs: list = repo("accounts/")
+    layout = [
+            [
+                gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+            ],
+            [
+                [gui.Text(langtxt("login__choose_account", lang), text_color=mn_text, background_color=mn_back)],
+                [gui.Listbox(
+                    values=accs, size=(40,20), key=":AccountsListed",
+                    text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg, highlight_background_color=ls_high
+                )],
+                [gui.Button(langtxt("login__enter", lang), key=":EnterAccount"), gui.Button(langtxt("login__add", lang), key=":AddAccount")]
+            ]
+    ]
+    return layout
 
 logadd_layout = [
         [
@@ -48,3 +52,21 @@ logadd_layout = [
             [gui.Button(langtxt("login__confirm", lang), key=":ConfirmAccountCreation")]
         ]
 ]
+#-------------------------------------------------
+# MAIN MENU SECTION
+#-------------------------------------------------
+def menu_layout():
+    entries = Entry.__subclasses__(); templist = []
+    for i in entries:
+        templist.append(
+            [gui.Button(langtxt(i.entry_langkey, lang), key=f":{i.entry_langkey}")]
+        )
+    layout = [
+        [
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+        ],
+        [
+            templist
+        ]
+    ]
+    return layout

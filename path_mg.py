@@ -1,3 +1,4 @@
+from core.technical.repo_manag import tomlm as t; m = t("init.toml")
 import os
 import sys
 
@@ -27,6 +28,10 @@ def path_info():
     The path should include folders named as {folders[0]}, {folders[1]}, {folders[2]} and 
     others - if those are not provided, issue with the program may be related to incorrect
     path system.
+    
+    Printing init.toml informations:
+    Version:     {m["version"]} 
+    Build type:  {m["status"]}
     ---------------------------------------------------------------------------------------
     """
     return info

@@ -1,6 +1,7 @@
 import path_mg as p; p.initialise_path()
 from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
 from core.technical import log_manag as log_manag; log_manag.run()
+from core.gui.layouts import login_layout
 from core.gui import window as window
 from core.gui import events as events
 import PySimpleGUI as gui
@@ -9,12 +10,12 @@ import traceback
 
 log.debug(p.path_info())
 try:
-    win = window.runWindow("login_layout", True); log.info("Window succesfully initialised!")
-    accname = ""
+    win = window.runFWindow(login_layout(), True); log.info("Window succesfully initialised!")
+    accname = "" #| value before logging (overwritten by :EnterAccount event)
     while True:
         event, values = win.read()
         win.refresh()
-        win = events.eventReader(win, event, values)
+        win = events.eventReader(win, event, values, accname)
         if event == ":EnterAccount":
             try: accname = (values[":AccountsListed"])[0]
             except IndexError: pass
