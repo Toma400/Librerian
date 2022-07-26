@@ -8,6 +8,8 @@
 # Keys in this file are used for user interface, so be sure to not remove
 # any of them.
 # ---------------------------------------------------------------------------
+# CONTRIBUTORS
+# - Ginger
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
@@ -23,8 +25,8 @@ menu__settings = "Configuración"
 menu__donate = "Donar al autor"
 menu__exit = "Salir"
 
-settings__language = "Cambiar idioma"
-settings__theme = "Cambiar tema"
+settings__languages = "Cambiar idioma"
+settings__themes = "Cambiar tema"
 settings__confirm = "Confirmar"
 settings__lang = "Seleccionar idioma"
 settings__theme = "Seleccionar tema"
