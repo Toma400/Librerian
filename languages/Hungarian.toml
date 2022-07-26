@@ -13,7 +13,7 @@
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
-current__language = "Hungarian"
+current__language = "Magyar"
 
 login__choose_account = "Válaszd ki a fiókodat"
 login__enter = "Belépés"
@@ -21,14 +21,14 @@ login__add = "Új fiók hozzáadása"
 login__new_account = "Add meg a fiókod nevét"
 login__confirm = "Megerősítés"
 
-menu__settings = "Settings"
-menu__donate = "Donate the Author"
-menu__exit = "Exit"
+menu__settings = "Beállítások"
+menu__donate = "Adományozás a szerzőnek"
+menu__exit = "Kilépés"
 
-settings__languages = "Change language"
-settings__themes = "Change theme"
+settings__languages = "Nyelv megváltozatása"
+settings__themes = "Kinézet megváltozatása"
 settings__confirm = "Megerősítés"
-settings__lang = "Choose language"
-settings__theme = "Choose theme"
+settings__lang = "Nyelv kiválasztása"
+settings__theme = "Kinézet kiválasztása"
 
 entry__book = "Könyvek"
