@@ -82,7 +82,10 @@ def menu_layout():
             gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
         ],
         [
-            templist
+            templist,
+            [gui.Button(langtxt("menu__settings", lang), key=f":EnterSettings")],
+            [gui.Button(langtxt("menu__donate", lang), key=f":Donate")],
+            [gui.Button(langtxt("menu__exit", lang), key=f":Exit")]
         ]
     ]
     return layout

@@ -17,4 +17,8 @@ login__add = "Új fiók hozzáadása"
 login__new_account = "Add meg a fiókod nevét"
 login__confirm = "Megerősítés"
 
+menu__settings = "Settings"
+menu__donate = "Donate the Author"
+menu__exit = "Exit"
+
 entry__book = "Könyvek"

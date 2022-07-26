@@ -15,4 +15,8 @@ login__add = "Dodaj nowe konto"
 login__new_account = "Wprowadź nazwę konta"
 login__confirm = "Potwierdź"
 
+menu__settings = "Ustawienia"
+menu__donate = "Wesprzyj autora"
+menu__exit = "Wyjście"
+
 entry__book = "Książki"

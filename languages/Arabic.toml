@@ -17,4 +17,8 @@ login__add = "Add new account"
 login__new_account = "Enter the name of your account"
 login__confirm = "Confirm"
 
+menu__settings = "Settings"
+menu__donate = "Donate the Author"
+menu__exit = "Exit"
+
 entry__book = "Books"
