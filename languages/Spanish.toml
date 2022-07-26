@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------
+# LANGUAGE FILE
+# ------------------------
+# Language files are meant to support multilingualistic experience for
+# Librerian. They can have any name supported by Librerian natively, or
+# any name ever, if you edit 'settings.toml' manually.
+#
+# Keys in this file are used for user interface, so be sure to not remove
+# any of them.
+# ---------------------------------------------------------------------------
+
+#| Translators in key below should replace "English" with their respective
+#| language, and translate it (so, Polish would have "Polski" there)
+current__language = "Español"
+
+login__choose_account = "Selecciona tu cuenta"
+login__enter = "Entrar"
+login__add = "Agregar nueva cuenta"
+login__new_account = "Elige el nombre de tu cuenta"
+login__confirm = "Confirmar"
+
+menu__settings = "Configuración"
+menu__donate = "Donar al autor"
+menu__exit = "Salir"
+
+settings__language = "Cambiar idioma"
+settings__theme = "Cambiar tema"
+settings__confirm = "Confirmar"
+settings__lang = "Seleccionar idioma"
+settings__theme = "Seleccionar tema"
+
+entry__book = "Libros"
