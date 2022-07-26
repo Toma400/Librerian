@@ -62,14 +62,21 @@ def menu_layout():
     modules = file_lister("entries/", ext="py")
     for x in modules: #| imports all modules from /entries/ folder
         x1 = x.replace("\\", "."); x2 = x1.replace("\\", ".")
-        print (x2)
         __import__(x2)
     templist = []
     for i in Entry.subclasses:
         log.info(f"Recognised entry of ID: [{i}]. Loading the entry...")
-        templist.append(
-            [gui.Button(langtxt(i.entry_langkey, lang), key=f":{i.entry_langkey}")]
-        )
+        #| Creating buttons for recognised entries
+        #|____________________________________________________________________________________________________________________
+        if "__" in i.entry_langkey:                                                       #| HANDLING FOR NATIVE ENTRIES     |
+            templist.append(                                                              #| --------------------------------|
+                [gui.Button(langtxt(i.entry_langkey, lang), key=f":{i.entry_langkey}")]   #| Takes value from lang file      |
+            ) #|_____________________________________________________________________________________________________________|
+        else:                                                                             #| HANDLING FOR PLUGIN ENTRIES     |
+            templist.append(                                                              #| --------------------------------|
+                [gui.Button(i.interior_langkey(self=i, key=i.entry_langkey, lang=lang),   #| Takes value from custom langkey |
+                 key=f":{i.interior_langkey(self=i, key=i.entry_langkey, lang=lang)}")]   #| dictionaries                    |
+            ) #|_____________________________________________________________________________________________________________|
     layout = [
         [
             gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
