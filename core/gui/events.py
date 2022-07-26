@@ -31,6 +31,13 @@ def eventReader(win: Window, event: str, values, accname=""):
             log.info(f"Attempted to log into account: {acname[0]}")
             win.close(); win = window.runFWindow(menu_layout())
         except IndexError: log.debug("No accounts selected or made, login attempt failed.")
+    # -------------|------------------------------------------------------|
+    # MENU         |                                                      |
+    # SECTION      |                                                      |
+    # -------------|------------------------------------------------------|
+    elif event == ":Donate":
+        import webbrowser; url = "https://www.patreon.com/Toma400/"
+        webbrowser.open(url, new=0, autoraise=True)
     # -------------------------------------------------------------------|
     # Event finishing the program                                        |
     # -------------------------------------------------------------------|

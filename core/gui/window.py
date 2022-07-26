@@ -22,7 +22,7 @@ def runWindow(layout: str, init=False):
 
 def runFWindow(layout, init=False): #| used for more sophisticated layouts using functions instead of variables
     log.info("Initialising the program window...") if init else log.info(f"Jumping into functional window >{layout}<")
-    # ^ https://stackoverflow.com/questions/218616/how-to-get-method-parameter-names <- for {layout}
+    # ^ https://stackoverflow.com/questions/218616/how-to-get-method-parameter-names <- for {layout} (also func.__name__)
     flayout = copy.deepcopy(layout)
     window = makeWindow(flayout)
     return window
