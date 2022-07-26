@@ -10,7 +10,7 @@ import traceback
 
 log.debug(p.path_info())
 try:
-    win = window.runFWindow(login_layout(), init=True); log.info("Window succesfully initialised!")
+    win = window.runFWindow(login_layout(), idf="Init", init=True); log.info("Window succesfully initialised!")
     accname = "" #| value before logging (overwritten by :EnterAccount event)
     while True:
         event, values = win.read()

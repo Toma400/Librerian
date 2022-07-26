@@ -1,6 +1,13 @@
-#---------------|---------------------------------
+#---------------|----------------------------------
 # DEV BUILDS    |
-#===============|=================================
+#===============|==================================
+0.2
+====
+ - Created Librerian menu
+ - Added recognition of entries (including plugins)
+   to Librerian system
+ - Refactored entries localisation
+---------------------------------------------------
 0.1
 ====
  - Added account selection menu

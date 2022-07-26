@@ -11,6 +11,10 @@
 # CONTRIBUTORS
 # - Hamza
 
+#| Translators in key below should replace "English" with their respective
+#| language, and translate it (so, Polish would have "Polski" there)
+current__language = "Arabic"
+
 login__choose_account = "اختر حسابك"
 login__enter = "ادخل"
 login__add = "Add new account"
@@ -20,5 +24,11 @@ login__confirm = "Confirm"
 menu__settings = "Settings"
 menu__donate = "Donate the Author"
 menu__exit = "Exit"
+
+settings__languages = "Change language"
+settings__themes = "Change theme"
+settings__confirm = "Confirm"
+settings__lang = "Choose language"
+settings__theme = "Choose theme"
 
 entry__book = "Books"

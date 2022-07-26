@@ -7,16 +7,16 @@ class ExamplePlugin(Entry):
 
     custom_langkey = {
         "English": {
-            "entry_museums": "Example Translation"
+            "entry_museums": "Museums Attended"
         },
         "Polish": {
-            "entry_museums": "Example Translation in PL!"
+            "entry_museums": "Museums Attended in PL!"
         },
         "Hungarian": {
-            "entry_museums": "Example Translation in HU!"
+            "entry_museums": "Museums Attended in HU!"
         },
         "Arabic": {
-            "entry_museums": "Example Translation in AR!"
+            "entry_museums": "Museums Attended in AR!"
         }
     }
     # ------------------------------------------------

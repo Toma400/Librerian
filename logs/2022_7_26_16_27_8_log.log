@@ -1,0 +1,36 @@
+[2022-07-26 18:27:08,849] [DEBUG] [
+    ---------------------------------------------------------------------------------------
+    Hello in Librerian! 
+    This is program initialisation message which will prompt you all important informations
+    on current processes. All further info will be wrote during program running.
+    
+    Printing the path of the program:
+    ['D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian', 'D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\python38.zip', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\DLLs', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\lib', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages', 'D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian\\entries']
+    The path should include folders named as core, gui, elements and 
+    others - if those are not provided, issue with the program may be related to incorrect
+    path system.
+    
+    Printing init.toml informations:
+    Version:     0.2 
+    Build type:  Dev Builds
+    ---------------------------------------------------------------------------------------
+    ]
+[2022-07-26 18:27:08,853] [INFO] [Initialising the program window...]
+[2022-07-26 18:27:09,061] [INFO] [Window succesfully initialised!]
+[2022-07-26 18:27:10,448] [INFO] [Attempted to log into account: Shadow]
+[2022-07-26 18:27:10,465] [INFO] [Recognised entry of ID: [<class 'entries.entry_book.BookEntry'>]. Loading the entry...]
+[2022-07-26 18:27:10,466] [INFO] [Recognised entry of ID: [<class 'entries.example_plugin.ExamplePlugin'>]. Loading the entry...]
+[2022-07-26 18:27:10,469] [INFO] [Jumping into functional window >Menu<]
+[2022-07-26 18:27:11,260] [INFO] [Jumping into functional window >Settings<]
+[2022-07-26 18:27:11,999] [INFO] [Jumping into functional window >ChangeTheme<]
+[2022-07-26 18:27:12,000] [CRITICAL] [Main chain stopped. Printing the issue.]
+Traceback (most recent call last):
+  File "D:/Ministerstwo Kalibracyjne/PyCharm_Projects/Librerian/main.py", line 16, in <module>
+    event, values = win.read()
+  File "C:\Users\Ryzen 5\AppData\Local\Programs\Python\Python38\lib\site-packages\PySimpleGUI\PySimpleGUI.py", line 10067, in read
+    results = self._read(timeout=timeout, timeout_key=timeout_key)
+  File "C:\Users\Ryzen 5\AppData\Local\Programs\Python\Python38\lib\site-packages\PySimpleGUI\PySimpleGUI.py", line 10138, in _read
+    self._Show()
+  File "C:\Users\Ryzen 5\AppData\Local\Programs\Python\Python38\lib\site-packages\PySimpleGUI\PySimpleGUI.py", line 9854, in _Show
+    self.NumCols = max(len(row) for row in self.Rows)
+ValueError: max() arg is an empty sequence

@@ -1,4 +1,5 @@
-from core.gui.layouts import menu_layout, login_layout
+from core.gui.layouts import menu_layout, login_layout, settings_layout, setchange_layout
+from core.technical.repo_manag import lang_change, theme_change
 from core.elements import account as acc
 from core.gui import window as window
 from PySimpleGUI import Window
@@ -20,7 +21,7 @@ def eventReader(win: Window, event: str, values, accname=""):
     # -------------------------------------------------------------------|
     elif event == ":ConfirmAccountCreation":
         acname = values[":NewAccountName"]; result = acc.createAccount(acname)
-        if result: win.close(); win = window.runFWindow(login_layout())
+        if result: win.close(); win = window.runFWindow(login_layout(), idf="Login")
     # -------------------------------------------------------------------|
     # Event passing account name to further use; operated on main.py     |
     # module actually                                                    |
@@ -29,7 +30,7 @@ def eventReader(win: Window, event: str, values, accname=""):
         acname = values[":AccountsListed"]
         try:
             log.info(f"Attempted to log into account: {acname[0]}")
-            win.close(); win = window.runFWindow(menu_layout())
+            win.close(); win = window.runFWindow(menu_layout(), idf="Menu")
         except IndexError: log.debug("No accounts selected or made, login attempt failed.")
     # -------------|------------------------------------------------------|
     # MENU         |                                                      |
@@ -38,6 +39,34 @@ def eventReader(win: Window, event: str, values, accname=""):
     elif event == ":Donate":
         import webbrowser; url = "https://www.patreon.com/Toma400/"
         webbrowser.open(url, new=0, autoraise=True)
+    elif event == ":EnterSettings":
+        win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
+    # -------------------------------------------------------------------|
+    # Events passed after attempting to change specific settings         |
+    # Allows choosing language or theme                                  |
+    # -------------------------------------------------------------------|
+    #| Make new selection window appear
+    elif event == ":ChangeLang":
+        win.close(); win = window.runFWindow(setchange_layout("lang"), idf="ChangeLang")
+    elif event == ":ChangeTheme":
+        win.close(); win = window.runFWindow(setchange_layout("theme"), idf="ChangeTheme")
+    #|--------------------------
+    #| Run after using lang button
+    elif event == ":SetchangeConfirmLang":
+        if values[":LangListed"]:
+            lgname = values[":LangListed"]
+            lang_change(lgname)
+        win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
+    #| Run after using theme button
+    elif event == ":SetchangeConfirmTheme":
+        if values[":ThemeListed"]:
+            thname = values[":ThemeListed"]
+            theme_change(thname)
+        win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
+    #|--------------------------
+    #| Coming back to menu
+    elif event == ":BackToMenu":
+        win.close(); win = window.runFWindow(menu_layout(), idf="Menu")
     # -------------------------------------------------------------------|
     # Event finishing the program                                        |
     # -------------------------------------------------------------------|

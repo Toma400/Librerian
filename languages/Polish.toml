@@ -9,6 +9,10 @@
 # any of them.
 # ---------------------------------------------------------------------------
 
+#| Translators in key below should replace "English" with their respective
+#| language, and translate it (so, Polish would have "Polski" there)
+current__language = "Polski"
+
 login__choose_account = "Wybierz swoje konto"
 login__enter = "Wejdź"
 login__add = "Dodaj nowe konto"
@@ -18,5 +22,11 @@ login__confirm = "Potwierdź"
 menu__settings = "Ustawienia"
 menu__donate = "Wesprzyj autora"
 menu__exit = "Wyjście"
+
+settings__languages = "Zmień język"
+settings__themes = "Zmień motyw"
+settings__confirm = "Potwierdź"
+settings__lang = "Wybierz język"
+settings__theme = "Wybierz motyw"
 
 entry__book = "Książki"

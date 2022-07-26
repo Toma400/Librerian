@@ -1,0 +1,37 @@
+[2022-07-26 18:25:22,252] [DEBUG] [
+    ---------------------------------------------------------------------------------------
+    Hello in Librerian! 
+    This is program initialisation message which will prompt you all important informations
+    on current processes. All further info will be wrote during program running.
+    
+    Printing the path of the program:
+    ['D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian', 'D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\python38.zip', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\DLLs', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\lib', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38', 'C:\\Users\\Ryzen 5\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages', 'D:\\Ministerstwo Kalibracyjne\\PyCharm_Projects\\Librerian\\entries']
+    The path should include folders named as core, gui, elements and 
+    others - if those are not provided, issue with the program may be related to incorrect
+    path system.
+    
+    Printing init.toml informations:
+    Version:     0.2 
+    Build type:  Dev Builds
+    ---------------------------------------------------------------------------------------
+    ]
+[2022-07-26 18:25:22,255] [INFO] [Initialising the program window...]
+[2022-07-26 18:25:22,461] [INFO] [Window succesfully initialised!]
+[2022-07-26 18:25:24,333] [INFO] [Attempted to log into account: Shadow]
+[2022-07-26 18:25:24,350] [INFO] [Recognised entry of ID: [<class 'entries.entry_book.BookEntry'>]. Loading the entry...]
+[2022-07-26 18:25:24,351] [INFO] [Recognised entry of ID: [<class 'entries.example_plugin.ExamplePlugin'>]. Loading the entry...]
+[2022-07-26 18:25:24,354] [INFO] [Jumping into functional window >Menu<]
+[2022-07-26 18:25:25,014] [INFO] [Jumping into functional window >Settings<]
+[2022-07-26 18:25:25,864] [CRITICAL] [Main chain stopped. Printing the issue.]
+Traceback (most recent call last):
+  File "D:/Ministerstwo Kalibracyjne/PyCharm_Projects/Librerian/main.py", line 18, in <module>
+    win = events.eventReader(win, event, values, accname)
+  File "D:\Ministerstwo Kalibracyjne\PyCharm_Projects\Librerian\core\gui\events.py", line 50, in eventReader
+    win.close(); win = window.runFWindow(setchange_layout("lang"), idf="ChangeLang")
+  File "D:\Ministerstwo Kalibracyjne\PyCharm_Projects\Librerian\core\gui\layouts.py", line 113, in setchange_layout
+    ij = t(f"themes/{i}.toml"); ik = ij["current__language"]
+  File "D:\Ministerstwo Kalibracyjne\PyCharm_Projects\Librerian\core\technical\repo_manag.py", line 69, in tomlm
+    return toml.load(pathage)
+  File "C:\Users\Ryzen 5\AppData\Local\Programs\Python\Python38\lib\site-packages\toml\decoder.py", line 133, in load
+    with io.open(_getpath(f), encoding='utf-8') as ffile:
+FileNotFoundError: [Errno 2] No such file or directory: 'themes/languages\\Arabic.toml'

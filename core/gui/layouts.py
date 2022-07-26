@@ -3,8 +3,8 @@ from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
 from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import lang_reader as langtxt
-from core.technical.repo_manag import module_importer
 from core.technical.repo_manag import file_lister
+from core.technical.log_manag import LibrerianError
 from core.elements.blank_entry import Entry
 import PySimpleGUI as gui
 import logging as log
@@ -89,3 +89,42 @@ def menu_layout():
         ]
     ]
     return layout
+
+def settings_layout():
+    current_theme = s["theme"]
+    layout = [
+        [
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+        ],
+        [
+            [gui.Text(langtxt("settings__languages", lang), text_color=mn_text, background_color=mn_back),
+             gui.Button(langtxt("current__language", lang), key=":ChangeLang")], #| NOT YET USED
+            [gui.Text(langtxt("settings__themes", lang), text_color=mn_text, background_color=mn_back),
+             gui.Button(current_theme, key=":ChangeTheme")], #| NOT YET USED
+            [gui.Button(langtxt("settings__confirm", lang), key=":BackToMenu")]
+        ]
+    ]
+    return layout
+
+def setchange_layout(el):
+    if el == "lang":
+        elmp = file_lister("languages/", ext="toml"); sign = "Lang"; elm = []
+        for i in elmp: #| makes languages show their own names, translated
+            ij = t(f"themes/{i}.toml"); ik = ij["current__language"]
+            elm.append(ik)
+    elif el == "theme": elm = file_lister("themes/", ext="toml"); sign = "Theme"
+    else: LibrerianError("Wrong parameter set on <setchange_layout> function in layouts.py file")
+    layout = [
+        [
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+        ],
+        [
+            [gui.Text(langtxt(f"settings__{el}", lang), text_color=mn_text, background_color=mn_back)],
+            [gui.Listbox(
+                values=elm, size=(40, 20), key=f":{sign}Listed",
+                text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg,
+                highlight_background_color=ls_high
+            )],
+            [gui.Button(langtxt("settings__confirm", lang), key=f":SetchangeConfirm{sign}")] #| NOT YET USED
+        ]
+    ]

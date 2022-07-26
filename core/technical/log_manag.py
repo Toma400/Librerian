@@ -29,3 +29,9 @@ def format_creating(text=""):
     for i in format_list:
         text = text + str(i)
     return text
+
+class LibrerianError(Exception):
+
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)

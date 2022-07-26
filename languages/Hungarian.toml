@@ -11,6 +11,10 @@
 # CONTRIBUTORS
 # - CrashGyuluka
 
+#| Translators in key below should replace "English" with their respective
+#| language, and translate it (so, Polish would have "Polski" there)
+current__language = "Hungarian"
+
 login__choose_account = "Válaszd ki a fiókodat"
 login__enter = "Belépés"
 login__add = "Új fiók hozzáadása"
@@ -20,5 +24,11 @@ login__confirm = "Megerősítés"
 menu__settings = "Settings"
 menu__donate = "Donate the Author"
 menu__exit = "Exit"
+
+settings__languages = "Change language"
+settings__themes = "Change theme"
+settings__confirm = "Megerősítés"
+settings__lang = "Choose language"
+settings__theme = "Choose theme"
 
 entry__book = "Könyvek"

@@ -84,3 +84,11 @@ def lang_reader (key: str, lang="english"):
       return file[key]
     except FileNotFoundError:
       log.critical("Default language file removed. Please redownload the software or language file.")
+
+def lang_change (choice):
+  print (f"lang_change used! {choice}")
+  pass
+
+def theme_change (choice):
+  print(f"theme_change used! {choice}")
+  pass
