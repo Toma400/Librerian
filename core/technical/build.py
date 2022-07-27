@@ -52,10 +52,11 @@ class DefaultRun:
         full_export_path + ".gitignore",
         full_export_path + "logs/cache/",
         full_export_path + "__pycache__",
-        full_export_path + "core/elements/__pycache__",
         full_export_path + "core/__pycache__",
-        full_export_path + "gui/__pycache__",
-        full_export_path + "technical/__pycache__"
+        full_export_path + "core/gui/__pycache__",
+        full_export_path + "core/elements/__pycache__",
+        full_export_path + "core/technical/__pycache__",
+        full_export_path + "entries/__pycache__"
     ]
 
 # function used to delete elements excluded in list above

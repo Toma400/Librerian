@@ -1,3 +1,5 @@
+import os; gpath = os.path.dirname(os.path.abspath("main.py")); lpath = gpath + r"/languages/"
+import toml
 import logging as log
 
 #-------------------|------------------------------------
@@ -17,6 +19,18 @@ def file_deleting (pathage):
   except FileNotFoundError:
     pass
   del shutil
+
+def cache_deleting ():
+  clist = [
+    f"{gpath}/__pycache__", f"{gpath}/core/__pycache__", f"{gpath}/entries/__pycache__",
+    f"{gpath}/core/__pycache__", f"{gpath}/core/elements/__pycache__", f"{gpath}/core/gui/__pycache__", f"{gpath}/core/technical/__pycache__"
+  ]
+  for i in clist:
+    file_deleting(i)
+  log.debug(f"Cache deleted successfully! Ending the program...")
+
+def logs_deleting (num: int):
+  pass
 
 #-----------|--------------------------------------------
 # LISTERS   | Used to list specific types of files, such
@@ -65,13 +79,12 @@ def module_importer (path: str):
 # TOML MANAGEMENT   |
 #-------------------|------------------------------------
 def tomlm (pathage: str):
-  import toml
   return toml.load(pathage)
 
 #------------|-------------------------------------------
 # LANGUAGE   |
 #------------|-------------------------------------------
-def lang_reader (key: str, lang="english"):
+def lang_reader (key: str, lang="English"):
   try:
     file = tomlm(f"languages/{lang}.toml")
     return file[key]
@@ -85,16 +98,62 @@ def lang_reader (key: str, lang="english"):
     except FileNotFoundError:
       log.critical("Default language file removed. Please redownload the software or language file.")
 
-def lang_change (choice):
-  lang = choice[0] #| ISSUES: 1. langs put in file are translated (retranslate them?) 2. dump erases comments (if this matters anymore)
-  import toml; log.info(f"Changing language to: [{lang}]") #| ALSO: make reloading of stuff, so lang and theme changes happen immediately
+def lang_change (lang):
+  #| ISSUES: 1. langs put in file are translated (retranslate them?) 2. dump erases comments (if this matters anymore)
+  log.info(f"Changing language to: [{lang}]") #| ALSO: make reloading of stuff, so lang and theme changes happen immediately
   data = tomlm("settings.toml"); data["General"]["language"] = f"{lang}"
   with open ("settings.toml", "w") as f:
     toml.dump(data, f)
 
 def theme_change (choice):
   theme = choice[0]
-  import toml; log.info(f"Changing theme to: [{theme}]")
+  log.info(f"Changing theme to: [{theme}]")
   data = tomlm("settings.toml"); data["General"]["theme"] = f"{theme}"
   with open("settings.toml", "w") as f:
     toml.dump(data, f)
+
+def screen_change (choice):
+  import toml; log.info(f"Changing window to: [{choice}]")
+  data = tomlm("settings.toml"); data["General"]["window"] = f"{choice}"
+  with open("settings.toml", "w") as f:
+    toml.dump(data, f)
+
+#---------------------|--------------------------------------------------------------|--------------------------------------------------------------
+# REVERSE ENGINEERING | Used to get language used, by searching through keys         | Lang returns language name, given value and key of toml file
+# SECTION             |-----------------------------                                 |---------------------------
+#                     | It is done because sometimes you can return translated word  | Warn is made to pre-check if keys repeat, so it will log
+#                     | but you cannot really use it to determine the language       | that as 'warn' (as modules such as settings can work
+#                     |-----------------------------                                 | incorrectly in some cases
+#                     | Created mostly to deal with PySimpleGUI/settings case        |
+#---------------------|--------------------------------------------------------------|---------------------------------------------------------------
+#@SoftDeprecated
+def reverseeng_lang (translated_value, key_assigned):
+  tomllist = file_lister("languages/", "toml") #| check if this returns only names, or paths, or whatever - should only names
+  for i in tomllist:
+    import re; ij = re.sub(r'\\', '', i); ik = ij.replace("languages", "")
+    if lang_reader(key_assigned, ik) == translated_value:
+      return ik
+
+#@SoftDeprecated
+def reverseeng_warn (key_to_check: str):
+  tomllist = file_lister("languages/", "toml"); vallist = []
+  for i in tomllist:
+    import re; ij = re.sub(r'\\', '', i); ik = ij.replace("languages", "")
+    vallist.append(lang_reader(key_to_check, ik))
+  #| checking for duplicates
+  j = has_duplicates(vallist)
+  if j[0]:
+    log.warning(f'''
+    Duplicated entry found in language file for key {key_to_check}! Duplicated value takes values: {j[1]}
+    Some program functions can not work correctly.
+    
+    Recommended solution for this is to change value of keys from printed languages (look first line of the warning) manually
+    or to inform creators of those languages to change them and update the file.
+    ''')
+
+def has_duplicates (listv):
+  #| code below checks for duplicated entries
+  if len(listv) > len(set(listv)):
+    return [True, [i for i in set(listv) if listv.count(i) > 1]]
+  else:
+    return [False, []]

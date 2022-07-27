@@ -1,5 +1,6 @@
 from core.gui.layouts import menu_layout, login_layout, settings_layout, setchange_layout
-from core.technical.repo_manag import lang_change, theme_change
+from core.technical.repo_manag import lang_change, theme_change, reverseeng_lang
+import core.gui.layouts as layouts; import importlib
 from core.elements import account as acc
 from core.gui import window as window
 from PySimpleGUI import Window
@@ -54,14 +55,17 @@ def eventReader(win: Window, event: str, values, accname=""):
     #| Run after using lang button
     elif event == ":SetchangeConfirmLang":
         if values[":LangListed"]:
-            lgname = values[":LangListed"]
+            temp = values[":LangListed"] #| translation
+            lgname = reverseeng_lang(temp[0], "current__language") #| detranslation
             lang_change(lgname)
+        importlib.reload(layouts) #| used to make changes appear
         win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
     #| Run after using theme button
     elif event == ":SetchangeConfirmTheme":
         if values[":ThemeListed"]:
             thname = values[":ThemeListed"]
             theme_change(thname)
+        importlib.reload(layouts) #| used to make changes appear
         win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
     #|--------------------------
     #| Coming back to menu

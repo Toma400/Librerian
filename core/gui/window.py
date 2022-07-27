@@ -1,8 +1,10 @@
 from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; winset = s["window"]
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
+from core.technical.repo_manag import screen_change
 import core.gui.layouts as layouts
 import logging as log
 import PySimpleGUI as gui
+import importlib
 import copy
 
 #--------------|----------------------------------
@@ -56,4 +58,5 @@ def winSet():
     elif setv == "Small": return False
     else:
         log.info(f"Incorrect settings found. Found Window setting is set to {setv}. Switching to default setting...")
-        return True # in the future you can make it override incorrect value in .toml file and write default
+        screen_change("Small")
+        return False

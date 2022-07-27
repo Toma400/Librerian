@@ -92,17 +92,17 @@ def menu_layout():
     return layout
 
 def settings_layout():
-    theme = t("themes/" + s["theme"] + ".toml")
     current_theme = s["theme"]
+    current_winset = s["window"] #| later use to get translation + set change of window in events
     layout = [
         [
             gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
         ],
         [
             [gui.Text(langtxt("settings__languages", lang), text_color=mn_text, background_color=mn_back),
-             gui.Button(langtxt("current__language", lang), key=":ChangeLang")], #| NOT YET USED
+             gui.Button(langtxt("current__language", lang), key=":ChangeLang")],
             [gui.Text(langtxt("settings__themes", lang), text_color=mn_text, background_color=mn_back),
-             gui.Button(current_theme, key=":ChangeTheme")], #| NOT YET USED
+             gui.Button(current_theme, key=":ChangeTheme")],
             [gui.Button(langtxt("settings__confirm", lang), key=":BackToMenu")]
         ]
     ]

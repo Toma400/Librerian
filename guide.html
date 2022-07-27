@@ -19,10 +19,10 @@
     <h2>Table of contents:</h2>
     <ul>
         <li>What is Librerian?</li>
-        <li>Settings use</li>
         <li>Custom themes</li>
         <li>Translation contributions</li>
         <li>Adding new types of data</li>
+        <li>Settings use</li>
     </ul>
 
     <hr><br>
@@ -51,27 +51,6 @@
     you will be able to customise themes, but in the future, I plan on adding pretty easy system of expanding Librerian elements.
 
     So, about the customisation, let's look what is currently available (in dev-builds).
-
-    <hr><br>
-    <center><h2>Settings use</h2></center>
-
-    First thing after unpacking program files you will encounter is <code>settings.toml</code> file in the folder. TOML files are actually
-    configuration files, openable easily with notebook. Since dev-builds are pretty raw versions of the program, editing this
-    file is the only way for you to access the settings - for now!<br><br>
-
-    So, open the file. You should see something like this:
-    <pre>
-        <code>language = "English"</code>
-        <code>theme = "Classic"</code>
-        <code>window = "Fullscreen"</code>
-    </pre>
-    Those are under <code>[General]</code> category, so you know that those settings apply to whole program and refer to common
-    use of it. So, explaining them:
-    <ul>
-        <li><b>language</b></li> - this setting needs to be named with respective language file name stored in <code>languages</code> folder. It changes user interface to specific language. If language is wrongly set, it changes to default (English)
-        <li><b>theme</b></li> - themes are colour palettes creating Librerian's look. Themes are stored in <code>themes</code> folder, and name you put in settings should be the same as file in said folder
-        <li><b>window</b></li> - this setting changes whether or not Librerian opens with full screen, or minimised. Setting here takes <code>Fullscreen</code> value (for full screen) or <code>Small</code> (for minimised). Use of different value will make window use default value (full screen)
-    </ul>
 
     <hr><br>
     <center><h2>Custom themes</h2></center>
@@ -125,7 +104,42 @@
     <b>Be aware that - even if there's tutorial here on how to create entries - during Dev-Builds, Alpha and Beta, major changes may come, resulting on you
     needing to redo your Entry to work correctly. If something like this is done, there will be migration guide for it published, though.</b><br><br>
 
-    Unfortunately, at current stage of Librerian, there's no way to add new type of data, in any way possible. It will get added in near future, though.<br><br>
+    Creating new plugin entries is possible by creating new .py file in <code>entries</code> folder. Here are some requirements:<br>
+    <ul>
+        <li> It has to contain class deriving either from Entry, or other entries (so, in case of books, BookEntry). Make sure you import the class too.
+        <li> It has to have constructor method <code>(__init__)</code> returning super() function
+        <li> It has to override elements that are requested (i.e. custom language dictionary)
+    </ul>
+    Even though this sounds terrible, it is not as difficult as you may think of it after reading. Open <code>/core/elements/</code> folder. You should be
+    able to find both <code>blank_entry.py</code> and <code>example_plugin.py</code> files. Remember those.<br><br>
+
+    <span style="color:#6F419E"><b>blank_entry.py</b></span> is your main reference, since most of plugins will refer to this exact file, and most of explanations you will need, are documented
+    exactly there (in comments).<br>
+    And <span style="color:#6F419E"><b>example_plugin.py</b></span> is example of how plugin entry looks - with even more explanations to each element, since this is meant to be learning tool for you.
+    You can copy it over to <code>/entries/</code> folder and see all its values working, too.
+
+    <br><br>
+
+    <hr><br>
+    <center><h2>Settings use</h2></center>
+
+    Nowadays, most Librerian settings are accessible within it itself. However, if you would like to manually access settings (without running the program),
+    you can edit <code>settings.toml</code> file.<br><br>
+
+    So, when you open the file, you should see something like this:
+    <pre>
+        <code>language = "English"</code>
+        <code>theme = "Classic"</code>
+        <code>window = "Fullscreen"</code>
+    </pre>
+    Those are under <code>[General]</code> category, so you know that those settings apply to whole program and refer to common
+    use of it. So, explaining them:
+    <ul>
+        <li><b>language</b> - this setting needs to be named with respective language file name stored in <code>languages</code> folder. It changes user interface to specific language. If language is wrongly set, it changes to default (English)
+        <li><b>theme</b> - themes are colour palettes creating Librerian's look. Themes are stored in <code>themes</code> folder, and name you put in settings should be the same as file in said folder
+        <li><b>window</b> - this setting changes whether or not Librerian opens with full screen, or minimised. Setting here takes <code>Fullscreen</code> value (for full screen) or <code>Small</code> (for minimised). Use of different value will make window use default value (minimised)
+    </ul>
+    <hr>
 
 </p>
 
