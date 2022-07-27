@@ -1,4 +1,5 @@
 import os; gpath = os.path.dirname(os.path.abspath("main.py")); lpath = gpath + r"/languages/"
+from core.technical.log_manag import SoftDeprecated
 import toml
 import logging as log
 
@@ -99,8 +100,7 @@ def lang_reader (key: str, lang="English"):
       log.critical("Default language file removed. Please redownload the software or language file.")
 
 def lang_change (lang):
-  #| ISSUES: 1. langs put in file are translated (retranslate them?) 2. dump erases comments (if this matters anymore)
-  log.info(f"Changing language to: [{lang}]") #| ALSO: make reloading of stuff, so lang and theme changes happen immediately
+  log.info(f"Changing language to: [{lang}]")
   data = tomlm("settings.toml"); data["General"]["language"] = f"{lang}"
   with open ("settings.toml", "w") as f:
     toml.dump(data, f)
@@ -123,10 +123,10 @@ def screen_change (choice):
 # SECTION             |-----------------------------                                 |---------------------------
 #                     | It is done because sometimes you can return translated word  | Warn is made to pre-check if keys repeat, so it will log
 #                     | but you cannot really use it to determine the language       | that as 'warn' (as modules such as settings can work
-#                     |-----------------------------                                 | incorrectly in some cases
+#                     |-----------------------------                                 | incorrectly in some cases)
 #                     | Created mostly to deal with PySimpleGUI/settings case        |
 #---------------------|--------------------------------------------------------------|---------------------------------------------------------------
-#@SoftDeprecated
+@SoftDeprecated
 def reverseeng_lang (translated_value, key_assigned):
   tomllist = file_lister("languages/", "toml") #| check if this returns only names, or paths, or whatever - should only names
   for i in tomllist:
@@ -134,7 +134,7 @@ def reverseeng_lang (translated_value, key_assigned):
     if lang_reader(key_assigned, ik) == translated_value:
       return ik
 
-#@SoftDeprecated
+@SoftDeprecated
 def reverseeng_warn (key_to_check: str):
   tomllist = file_lister("languages/", "toml"); vallist = []
   for i in tomllist:

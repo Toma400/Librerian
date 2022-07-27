@@ -55,6 +55,7 @@ class Entry:
     def __init__(self, user: str, comment: str = "", tags: list = None, avatar: str = None):
         #| system ones
         self.id             = "" #| there should be func taking some stuff and creating name which would be easily recognisable + exclusive no matter the data
+        self.user           = user #| to track actually logged user
         #| initialised during creating new item (have no default value, need to be defined)
         #| initialised optionally (have default value)
         self.comment        = comment
@@ -83,6 +84,11 @@ class Entry:
             Printing the traceback:
             ''', exc_info=True)
             import traceback; traceback.print_exc()
+
+    def new_item(self):
+        import os; path = os.path.dirname(os.path.abspath("main.py"))
+        final_path = f"{path}/accounts/{self.user}/{self.folder_key}/"
+        pass
 
     # -------------------------------------------------------------
     # NON-OBLIGATORY VALUES

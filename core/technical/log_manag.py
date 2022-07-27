@@ -40,30 +40,30 @@ class LibrerianError(Exception):
         super().__init__(self.message)
 
 #| Decorators
-@DeprecationWarning
 def SoftDeprecated(func):
 
-    def wrapper_func():
+    def wrapper_func(*args, **kwargs):
         logging.debug(f'''
-        Used function marked as SoftDeprecated: {func}.
+        Used function marked as SoftDeprecated: {func.__name__}.
         It is recommended to not use it, if there's a way to create code in clearer way, but this function will work normally.
         SoftDeprecation is used for features that can't be put other way, but their current implementation is code-inefficient.
         ''')
-        func()
+        func(*args, **kwargs)
+        return func(*args, **kwargs)
         # Stuff after execution
 
-    return wrapper_func()
+    return wrapper_func
 
-@DeprecationWarning
 def Deprecated(func):
 
-    def wrapper_func():
+    def wrapper_func(*args, **kwargs):
         logging.debug(f'''
-        Used deprecated function {func.__str__()}.
+        Used deprecated function: {func.__name__}.
         It is recommended to not use it and update your code, as Deprecated functions are not getting any support and have most
         likely their alternatives already. Code will work, but can break in future versions.
         ''')
-        func()
+        func(*args, **kwargs)
+        return func(*args, **kwargs)
         # Stuff after execution
 
-    return wrapper_func()
+    return wrapper_func
