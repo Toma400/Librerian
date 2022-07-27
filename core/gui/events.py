@@ -65,7 +65,7 @@ def eventReader(win: Window, event: str, values, accname=""):
         if values[":ThemeListed"]:
             thname = values[":ThemeListed"]
             theme_change(thname)
-        importlib.reload(layouts) #| used to make changes appear
+        importlib.reload(layouts); importlib.reload(window) #| used to make changes appear
         win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
     #|--------------------------
     #| Coming back to menu
