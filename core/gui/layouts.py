@@ -1,6 +1,7 @@
 from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
 from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme"] + ".toml")
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
+import os; fpath = os.path.dirname(os.path.abspath("main.py")) + r"\core\icon32.png"
 from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import lang_reader as langtxt
 from core.technical.repo_manag import file_lister
@@ -32,7 +33,7 @@ def login_layout():
     accs: list = repo("accounts/")
     layout = [
             [
-                gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+                gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
             ],
             [
                 [gui.Text(langtxt("login__choose_account", lang), text_color=mn_text, background_color=mn_back)],
@@ -47,7 +48,7 @@ def login_layout():
 
 logadd_layout = [
         [
-            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
         ],
         [
             [gui.Text(langtxt("login__new_account", lang), text_color=mn_text, background_color=mn_back),
@@ -79,7 +80,7 @@ def menu_layout():
             ) #|_____________________________________________________________________________________________________________|
     layout = [
         [
-            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
         ],
         [
             templist,
@@ -91,10 +92,11 @@ def menu_layout():
     return layout
 
 def settings_layout():
+    theme = t("themes/" + s["theme"] + ".toml")
     current_theme = s["theme"]
     layout = [
         [
-            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
         ],
         [
             [gui.Text(langtxt("settings__languages", lang), text_color=mn_text, background_color=mn_back),
@@ -107,16 +109,25 @@ def settings_layout():
     return layout
 
 def setchange_layout(el):
+    #| sets layout list to languages
     if el == "lang":
         elmp = file_lister("languages/", ext="toml"); sign = "Lang"; elm = []
         for i in elmp: #| makes languages show their own names, translated
-            ij = t(f"themes/{i}.toml"); ik = ij["current__language"]
+            ij = t(f"{i}.toml"); ik = ij["current__language"]
             elm.append(ik)
-    elif el == "theme": elm = file_lister("themes/", ext="toml"); sign = "Theme"
+    #|-----------------------------
+    #| sets layout list to themes
+    elif el == "theme":
+        import re
+        elmr = file_lister("themes/", ext="toml"); sign = "Theme"; elm = []
+        for i in elmr: #| makes theme show their own names without path
+            ij = re.sub(r'\\', '', i); ik = ij.replace("themes", "")
+            elm.append(ik)
     else: LibrerianError("Wrong parameter set on <setchange_layout> function in layouts.py file")
+    #|-----------------------------
     layout = [
         [
-            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back)
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
         ],
         [
             [gui.Text(langtxt(f"settings__{el}", lang), text_color=mn_text, background_color=mn_back)],
@@ -128,3 +139,4 @@ def setchange_layout(el):
             [gui.Button(langtxt("settings__confirm", lang), key=f":SetchangeConfirm{sign}")] #| NOT YET USED
         ]
     ]
+    return layout

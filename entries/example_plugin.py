@@ -17,6 +17,9 @@ class ExamplePlugin(Entry):
         },
         "Arabic": {
             "entry_museums": "Museums Attended in AR!"
+        },
+        "Spanish": {
+            "entry_museums": "Museums Attended in ES!"
         }
     }
     # ------------------------------------------------

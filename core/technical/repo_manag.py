@@ -86,9 +86,15 @@ def lang_reader (key: str, lang="english"):
       log.critical("Default language file removed. Please redownload the software or language file.")
 
 def lang_change (choice):
-  print (f"lang_change used! {choice}")
-  pass
+  lang = choice[0] #| ISSUES: 1. langs put in file are translated (retranslate them?) 2. dump erases comments (if this matters anymore)
+  import toml; log.info(f"Changing language to: [{lang}]") #| ALSO: make reloading of stuff, so lang and theme changes happen immediately
+  data = tomlm("settings.toml"); data["General"]["language"] = f"{lang}"
+  with open ("settings.toml", "w") as f:
+    toml.dump(data, f)
 
 def theme_change (choice):
-  print(f"theme_change used! {choice}")
-  pass
+  theme = choice[0]
+  import toml; log.info(f"Changing theme to: [{theme}]")
+  data = tomlm("settings.toml"); data["General"]["theme"] = f"{theme}"
+  with open("settings.toml", "w") as f:
+    toml.dump(data, f)
