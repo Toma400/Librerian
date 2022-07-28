@@ -1,8 +1,9 @@
-import path_mg as p; p.initialise_path()
-from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
+import os; os.chdir(os.path.dirname(os.path.abspath("main.py"))); import path_mg as p; p.initialise_path() #| system imports
+from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]; lnum = s["log_limit"]
 from core.technical import log_manag as log_manag; log_manag.run()
 from core.technical.repo_manag import reverseeng_warn
 from core.technical.repo_manag import cache_deleting
+from core.technical.repo_manag import logs_deleting
 from core.gui.layouts import login_layout
 from core.gui import window as window
 from core.gui import events as events
@@ -10,6 +11,7 @@ import PySimpleGUI as gui
 import logging as log
 import traceback
 
+logs_deleting(lnum)
 log.debug(p.path_info())
 reverseeng_warn("current__language")
 try:

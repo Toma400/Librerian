@@ -1,5 +1,5 @@
 from core.gui.layouts import menu_layout, login_layout, settings_layout, setchange_layout
-from core.technical.repo_manag import lang_change, theme_change, reverseeng_lang
+from core.technical.repo_manag import lang_change, theme_change, reverseeng_lang, logs_deleting
 import core.gui.layouts as layouts; import importlib
 from core.elements import account as acc
 from core.gui import window as window
@@ -67,6 +67,12 @@ def eventReader(win: Window, event: str, values, accname=""):
             theme_change(thname)
         importlib.reload(layouts); importlib.reload(window) #| used to make changes appear
         win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
+    #|--------------------------
+    #| Log-related events
+    elif event == ":LogsSet":
+        pass
+    elif event == ":LogsRemove":
+        logs_deleting()
     #|--------------------------
     #| Coming back to menu
     elif event == ":BackToMenu":

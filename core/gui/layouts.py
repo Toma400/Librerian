@@ -1,7 +1,7 @@
-from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]
+from core.technical.repo_manag import tomlm as t; settings = t("settings.toml"); s = settings["General"]; lang = s["language"]; lnum = s["log_limit"]
 from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme"] + ".toml")
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
-import os; fpath = os.path.dirname(os.path.abspath("main.py")) + r"\core\icon32.png"
+import os; spath = os.path.dirname(os.path.abspath("main.py")); fpath = spath + r"\core\icon32.png"
 from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import lang_reader as langtxt
 from core.technical.repo_manag import file_lister
@@ -9,6 +9,7 @@ from core.technical.log_manag import LibrerianError
 from core.elements.blank_entry import Entry
 import PySimpleGUI as gui
 import logging as log
+import importlib
 
 #--------------|----------------------------------
 # THEME        |
@@ -60,10 +61,15 @@ logadd_layout = [
 # MAIN MENU SECTION
 #-------------------------------------------------
 def menu_layout():
-    modules = file_lister("entries/", ext="py")
+    modules = file_lister(f"entries/", ext="py")
     for x in modules: #| imports all modules from /entries/ folder
-        x1 = x.replace("\\", "."); x2 = x1.replace("\\", ".")
-        __import__(x2)
+        x1 = x.replace("\\", "."); x2 = x1.replace("\\", "."); log.debug(f"Module is being imported: [{x2}]")
+        #try: __import__(x2); log.debug(f"Module {x2} loaded successfully!")
+        try: importlib.import_module(x2); log.debug(f"Module {x2} loaded successfully!")
+        except ModuleNotFoundError:
+            log.debug(f"Module {x2} failed to load regularly. Taking absolute path...")
+            try: importlib.import_module(f"{spath}/{x2}"); log.debug(f"Module {x2} loaded successfully from absolute path: [{spath}/{x2}]")
+            except ModuleNotFoundError: log.debug(f"Module {x2} failed to load. Printing the stacktrace...", exc_info=True)
     templist = []
     for i in Entry.subclasses:
         log.info(f"Recognised entry of ID: [{i}]. Loading the entry...")
@@ -103,6 +109,9 @@ def settings_layout():
              gui.Button(langtxt("current__language", lang), key=":ChangeLang")],
             [gui.Text(langtxt("settings__themes", lang), text_color=mn_text, background_color=mn_back),
              gui.Button(current_theme, key=":ChangeTheme")],
+            [gui.Text(langtxt("settings__logs", lang), text_color=mn_text, background_color=mn_back),
+             gui.Button(str(lnum), key=":LogsSet"), #| not used
+             gui.Button(langtxt("settings__logs_delete", lang), key=":LogsRemove")],
             [gui.Button(langtxt("settings__confirm", lang), key=":BackToMenu")]
         ]
     ]

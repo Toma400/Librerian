@@ -1,5 +1,5 @@
 import os; gpath = os.path.dirname(os.path.abspath("main.py")); lpath = gpath + r"/languages/"
-from core.technical.log_manag import SoftDeprecated
+from core.technical.log_manag import SoftDeprecated, Deprecated
 import toml
 import logging as log
 
@@ -30,8 +30,24 @@ def cache_deleting ():
     file_deleting(i)
   log.debug(f"Cache deleted successfully! Ending the program...")
 
-def logs_deleting (num: int):
-  pass
+@SoftDeprecated #| most importantly this could have been written in less cluttered way ig, it's late now
+def logs_deleting (num: int = None):
+  all_logs = file_lister("logs/", "log"); all_logs.sort()
+  full_num = len(all_logs); to_remove = []
+  if num is not None:
+    if full_num > num-1:
+      delnum = full_num - (num-1); ui = 1
+      for u in all_logs:
+        if ui < delnum:
+          to_remove.append(u); ui = ui+1
+  for i in all_logs:
+    try:
+      if num is None: #| by default removes all logs
+        file_deleting(f"{gpath}/{i}.log")
+      elif full_num > num-1: #| removes only specific amount of logs
+        if i in to_remove: file_deleting(f"{gpath}/{i}.log")
+    except PermissionError: continue
+  if num is None: log.debug("Removed all logs with request of the user.")
 
 #-----------|--------------------------------------------
 # LISTERS   | Used to list specific types of files, such
@@ -58,7 +74,7 @@ def file_lister (path, ext="None"):
       listed2.append(i.replace("." + ext, ""))
     return listed2
 
-@DeprecationWarning
+@Deprecated("__import__(module)")
 #| Deprecated since this function returns objects, not
 #| strings; and strings can be easily imported with
 #| __import__(x) function
@@ -115,6 +131,17 @@ def theme_change (choice):
 def screen_change (choice):
   import toml; log.info(f"Changing window to: [{choice}]")
   data = tomlm("settings.toml"); data["General"]["window"] = f"{choice}"
+  with open("settings.toml", "w") as f:
+    toml.dump(data, f)
+
+def log_change (choice):
+  import toml; msg = ""
+  try:
+    ichoice = int(choice)
+    if ichoice < 1: ichoice = 15; msg = " default"
+  except ValueError: ichoice = 15; msg = " default"
+  log.info(f"Changing log limit to{msg}: [{str(ichoice)}]")
+  data = tomlm("settings.toml"); data["General"]["log_limit"] = ichoice
   with open("settings.toml", "w") as f:
     toml.dump(data, f)
 
