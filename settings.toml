@@ -1,5 +1,5 @@
 [General]
-language = "Polish"
+language = "English"
 theme = "Classic"
 window = "Small"
-log_limit = 30
+log_limit = 15
