@@ -13,26 +13,26 @@
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
-current__language = "Español" #| This value cannot overlap in other langfiles
+current__language     = "Español" #| This value cannot overlap in other langfiles
 
 login__choose_account = "Selecciona tu cuenta"
-login__enter = "Entrar"
-login__add = "Agregar nueva cuenta"
-login__new_account = "Elige el nombre de tu cuenta"
-login__confirm = "Confirmar"
+login__enter          = "Entrar"
+login__add            = "Agregar nueva cuenta"
+login__new_account    = "Elige el nombre de tu cuenta"
+login__confirm        = "Confirmar"
 
-menu__settings = "Configuración"
-menu__donate = "Donar al autor"
-menu__exit = "Salir"
+menu__settings        = "Configuración"
+menu__donate          = "Donar al autor"
+menu__exit            = "Salir"
 
-settings__languages = "Cambiar idioma"
-settings__themes = "Cambiar tema"
-settings__confirm = "Confirmar"
-settings__lang = "Seleccionar idioma"
-settings__theme = "Seleccionar tema"
+settings__languages   = "Cambiar idioma"
+settings__themes      = "Cambiar tema"
+settings__confirm     = "Confirmar"
+settings__lang        = "Seleccionar idioma"
+settings__theme       = "Seleccionar tema"
 settings__window      = "Alternar pantalla completa"
 settings__logs        = "Seleccionar límite de logs"
 settings__logs_delete = "Quitar logs"
 settings__logs_limit  = "Escribe el número (debe ser mayor a 0)"
 
-entry__book = "Libros"
+entry__book           = "Libros"

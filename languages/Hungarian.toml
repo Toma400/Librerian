@@ -13,22 +13,26 @@
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
-current__language = "Magyar" #| This value cannot overlap in other langfiles
+current__language     = "Magyar" #| This value cannot overlap in other langfiles
 
 login__choose_account = "Válaszd ki a fiókodat"
-login__enter = "Belépés"
-login__add = "Új fiók hozzáadása"
-login__new_account = "Add meg a fiókod nevét"
-login__confirm = "Megerősítés"
+login__enter          = "Belépés"
+login__add            = "Új fiók hozzáadása"
+login__new_account    = "Adja meg a fiókod nevét"
+login__confirm        = "Megerősítés"
 
-menu__settings = "Beállítások"
-menu__donate = "Adományozás a szerzőnek"
-menu__exit = "Kilépés"
+menu__settings        = "Beállítások"
+menu__donate          = "Adományozás a szerzőnek"
+menu__exit            = "Kilépés"
 
-settings__languages = "Nyelv megváltozatása"
-settings__themes = "Kinézet megváltozatása"
-settings__confirm = "Megerősítés"
-settings__lang = "Nyelv kiválasztása"
-settings__theme = "Kinézet kiválasztása"
+settings__languages   = "Nyelv megváltozatása"
+settings__themes      = "Kinézet megváltozatása"
+settings__confirm     = "Megerősítés"
+settings__lang        = "Nyelv kiválasztása"
+settings__theme       = "Kinézet kiválasztása"
+settings__window      = "Teljesképernyős mód"
+settings__logs        = "Naplózási limit kiválasztása"
+settings__logs_delete = "Naplózások eltávolítása"
+settings__logs_limit  = "Adjon meg egy pozitív egész számot"
 
-entry__book = "Könyvek"
+entry__book           = "Könyvek"
