@@ -64,12 +64,7 @@ def menu_layout():
     modules = file_lister(f"entries/", ext="py")
     for x in modules: #| imports all modules from /entries/ folder
         x1 = x.replace("\\", "."); x2 = x1.replace("\\", "."); log.debug(f"Module is being imported: [{x2}]")
-        #try: __import__(x2); log.debug(f"Module {x2} loaded successfully!")
-        try: importlib.import_module(x2); log.debug(f"Module {x2} loaded successfully!")
-        except ModuleNotFoundError:
-            log.debug(f"Module {x2} failed to load regularly. Taking absolute path...")
-            try: importlib.import_module(f"{spath}/{x2}"); log.debug(f"Module {x2} loaded successfully from absolute path: [{spath}/{x2}]")
-            except ModuleNotFoundError: log.debug(f"Module {x2} failed to load. Printing the stacktrace...", exc_info=True)
+        __import__(x2)
     templist = []
     for i in Entry.subclasses:
         log.info(f"Recognised entry of ID: [{i}]. Loading the entry...")
@@ -149,3 +144,14 @@ def setchange_layout(el):
         ]
     ]
     return layout
+
+setlog_layout = [
+        [
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
+        ],
+        [
+            [gui.Text(langtxt("settings__logs_limit", lang), text_color=mn_text, background_color=mn_back),
+             gui.In(size=(25, 1), enable_events=True, key=":LogsSetNumber")],
+            [gui.Button(langtxt("settings__confirm", lang), key=":SetchangeConfirmLogs")]
+        ]
+]

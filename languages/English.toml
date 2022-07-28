@@ -11,22 +11,26 @@
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
-current__language = "English" #| This value cannot repeat in other langfiles
+current__language     = "English" #| This value cannot overlap in other langfiles
 
 login__choose_account = "Choose your account"
-login__enter = "Enter"
-login__add = "Add new account"
-login__new_account = "Enter the name of your account"
-login__confirm = "Confirm"
+login__enter          = "Enter"
+login__add            = "Add new account"
+login__new_account    = "Enter the name of your account"
+login__confirm        = "Confirm"
 
-menu__settings = "Settings"
-menu__donate = "Donate the Author"
-menu__exit = "Exit"
+menu__settings        = "Settings"
+menu__donate          = "Donate the Author"
+menu__exit            = "Exit"
 
-settings__languages = "Change language"
-settings__themes = "Change theme"
-settings__confirm = "Confirm"
-settings__lang = "Choose language"
-settings__theme = "Choose theme"
+settings__languages   = "Change language"
+settings__themes      = "Change theme"
+settings__confirm     = "Confirm"
+settings__lang        = "Choose language"
+settings__theme       = "Choose theme"
+settings__window      = "Switch fullscreen"
+settings__logs        = "Select limit of logs"
+settings__logs_delete = "Remove logs"
+settings__logs_limit  = "Enter the number (must be above 0)"
 
-entry__book = "Books"
+entry__book           = "Books"

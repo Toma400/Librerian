@@ -11,22 +11,26 @@
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
-current__language = "Polski" #| This value cannot repeat in other langfiles
+current__language     = "Polski" #| This value cannot overlap in other langfiles
 
 login__choose_account = "Wybierz swoje konto"
-login__enter = "Wejdź"
-login__add = "Dodaj nowe konto"
-login__new_account = "Wprowadź nazwę konta"
-login__confirm = "Potwierdź"
+login__enter          = "Wejdź"
+login__add            = "Dodaj nowe konto"
+login__new_account    = "Wprowadź nazwę konta"
+login__confirm        = "Potwierdź"
 
-menu__settings = "Ustawienia"
-menu__donate = "Wesprzyj autora"
-menu__exit = "Wyjście"
+menu__settings        = "Ustawienia"
+menu__donate          = "Wesprzyj autora"
+menu__exit            = "Wyjście"
 
-settings__languages = "Zmień język"
-settings__themes = "Zmień motyw"
-settings__confirm = "Potwierdź"
-settings__lang = "Wybierz język"
-settings__theme = "Wybierz motyw"
+settings__languages   = "Zmień język"
+settings__themes      = "Zmień motyw"
+settings__confirm     = "Potwierdź"
+settings__lang        = "Wybierz język"
+settings__theme       = "Wybierz motyw"
+settings__window      = "Przełącz pełnoekranowość"
+settings__logs        = "Wybierz limit rejestrów"
+settings__logs_delete = "Usuń rejestry"
+settings__logs_limit  = "Wybierz numer (powyżej 0)"
 
-entry__book = "Książki"
+entry__book           = "Książki"

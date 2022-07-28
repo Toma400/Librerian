@@ -2,4 +2,4 @@
 language = "Polish"
 theme = "Classic"
 window = "Small"
-log_limit = 15
+log_limit = 30

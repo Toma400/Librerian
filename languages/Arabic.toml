@@ -13,7 +13,7 @@
 
 #| Translators in key below should replace "English" with their respective
 #| language, and translate it (so, Polish would have "Polski" there)
-current__language = "Arabic" #| This value cannot repeat in other langfiles
+current__language = "Arabic" #| This value cannot overlap in other langfiles
 
 login__choose_account = "اختر حسابك"
 login__enter = "ادخل"

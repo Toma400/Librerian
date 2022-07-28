@@ -1,5 +1,5 @@
 from core.gui.layouts import menu_layout, login_layout, settings_layout, setchange_layout
-from core.technical.repo_manag import lang_change, theme_change, reverseeng_lang, logs_deleting
+from core.technical.repo_manag import lang_change, theme_change, log_change, reverseeng_lang, logs_deleting
 import core.gui.layouts as layouts; import importlib
 from core.elements import account as acc
 from core.gui import window as window
@@ -70,7 +70,13 @@ def eventReader(win: Window, event: str, values, accname=""):
     #|--------------------------
     #| Log-related events
     elif event == ":LogsSet":
-        pass
+        win.close(); win = window.runWindow("setlog_layout")
+    elif event == ":SetchangeConfirmLogs":
+        if values[":LogsSetNumber"]:
+            loglim = values[":LogsSetNumber"]
+            log_change(loglim)
+        importlib.reload(layouts); importlib.reload(window) #| used to make changes appear
+        win.close(); win = window.runFWindow(settings_layout(), idf="Settings")
     elif event == ":LogsRemove":
         logs_deleting()
     #|--------------------------
