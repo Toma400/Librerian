@@ -161,7 +161,6 @@ def reverseeng_lang (translated_value, key_assigned):
     if lang_reader(key_assigned, ik) == translated_value:
       return ik
 
-@SoftDeprecated
 def reverseeng_warn (key_to_check: str):
   tomllist = file_lister("languages/", "toml"); vallist = []
   for i in tomllist:

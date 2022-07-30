@@ -1,3 +1,5 @@
+from entry_values import Value, SysValue
+
 class Entry:
     subclasses = []
 
@@ -52,21 +54,45 @@ class Entry:
     #             | parameters. Remember that parameters without default values are obligatory for user to fill.
     #             | In general it is recommended to make default values for all parameters.
     # ------------|----------------------------------------------------------------------------------------------
-    def __init__(self, user: str, comment: str = "", tags: list = None, avatar: str = None):
+    def __init__(self, comment: str = None, tags: list = None, avatar: str = None):
         #| system ones
         self.id             = "" #| there should be func taking some stuff and creating name which would be easily recognisable + exclusive no matter the data
-        self.user           = user #| to track actually logged user
         #| initialised during creating new item (have no default value, need to be defined)
         #| initialised optionally (have default value)
-        self.comment        = comment
-        self.tags           = tags
-        self.avatar         = f"accounts/{user}/{self.folder_key}/images/{avatar}"       #| Name of the file, needs to be .png
+        self.comment        = Value("comment", trkey="", storage=comment)
+        self.tags           = Value("tags", trkey="", storage=tags)
+        self.avatar         = Value("avatar", trkey="", storage=avatar)       #| Name of the file, needs to be .png
         #| should have also function checking if folder within {user} exists, and if not, then create it + create the file + create
         #| images folder too +++ V look at the bottom for suggestion towards 'comment' part
 
     # ------------|----------------------------------------------------------------------------------------------
     # FUNCTIONS   | In most cases, plugins should leave this part of code without overriding
     # ------------|----------------------------------------------------------------------------------------------
+    def write_entry(self, user: str):
+        path = f"accounts/{user}/{self.folder_key}/{self.id}.json"
+        pass
+
+    def add_avatar(self, user: str):
+        path = f"accounts/{user}/{self.folder_key}/images/{self.avatar}.png"
+        pass
+
+    def return_attr(self): #| returns all custom variable names from the class
+        atrlist = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
+        return atrlist
+
+    def return_val(self, value: str): #| direct caller for value inside Value class, using strings instead of direct call
+        package: Value = getattr(self, value)
+        return package.storage
+
+    def change_val(self, value: str, new_val, return_old=False): #| no change_sysVal as they are not meant to be changed
+        #if return_old: temp = self.return_val("value") else: temp = None
+        pass #| it should have .json saving here for [value.storage: new_val]
+        #if return_old: return temp
+
+    def return_sysVal(self, value: str): #| direct caller for value inside SysValue class, using strings instead of direct call
+        package: SysValue = getattr(self, value)
+        return package.storage
+
     @staticmethod
     def interior_langkey(self, key, lang="English"):
         try:
@@ -84,11 +110,6 @@ class Entry:
             Printing the traceback:
             ''', exc_info=True)
             import traceback; traceback.print_exc()
-
-    def new_item(self):
-        import os; path = os.path.dirname(os.path.abspath("main.py"))
-        final_path = f"{path}/accounts/{self.user}/{self.folder_key}/"
-        pass
 
     # -------------------------------------------------------------
     # NON-OBLIGATORY VALUES

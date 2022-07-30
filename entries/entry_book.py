@@ -30,7 +30,7 @@ class BookEntry(Entry):
     # ------------------------------------------------
     # MAIN BODY
     # ------------------------------------------------
-    def __init__(self, user: str):
-        super().__init__(user=user)
+    def __init__(self):
+        super().__init__()
         #self.book_title = book_title
         #self.author = author

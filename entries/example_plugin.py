@@ -32,5 +32,5 @@ class ExamplePlugin(Entry):
     # ------------------------------------------------
     # MAIN BODY
     # ------------------------------------------------
-    def __init__(self, user: str):
-        super().__init__(user=user)
+    def __init__(self, **kwargs):                   #| **kwargs let you pass all superclass (Entry) arguments to its constructor, therefore you don't
+        super().__init__(**kwargs)                  #| need to rewrite them manually - the only variables you will need
