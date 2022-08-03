@@ -75,3 +75,12 @@ def Deprecated(func_rdir: str = None):
         return wrapper_func
 
     return DecDeprecated
+
+def RequiresImprovement(func):
+    '''Serves as a placeholder decorator to signify code which is not readable enough'''
+    @functools.wraps(func)
+    def wrapper_func(*args, **kwargs):
+        func(*args, **kwargs)
+        return func(*args, **kwargs)
+
+    return wrapper_func

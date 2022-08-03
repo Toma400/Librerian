@@ -1,6 +1,6 @@
 import os; gpath = os.path.dirname(os.path.abspath("main.py")); lpath = gpath + r"/languages/"
-from core.technical.log_manag import SoftDeprecated, Deprecated
-import toml
+from core.technical.log_manag import SoftDeprecated, Deprecated, RequiresImprovement
+import toml; import json
 import logging as log
 
 #-------------------|------------------------------------
@@ -30,7 +30,7 @@ def cache_deleting ():
     file_deleting(i)
   log.debug(f"Cache deleted successfully! Ending the program...")
 
-@SoftDeprecated #| most importantly this could have been written in less cluttered way ig, it's late now
+@RequiresImprovement
 def logs_deleting (num: int = None):
   all_logs = file_lister("logs/", "log"); all_logs.sort()
   full_num = len(all_logs); to_remove = []
@@ -97,6 +97,29 @@ def module_importer (path: str):
 #-------------------|------------------------------------
 def tomlm (pathage: str):
   return toml.load(pathage)
+
+#-------------------|------------------------------------
+# JSON MANAGEMENT   |
+#-------------------|------------------------------------
+def js_read (pathage: str, key: str = None):
+  try:
+    with open(pathage) as jsfile: data = json.load(jsfile)
+    if key is None:
+      return data
+    return data[key]
+  except json.decoder.JSONDecodeError: log.warning(f"JSON File: {pathage} does not have any data. Skipping.")
+
+def js_change (pathage: str, key: str, new_value):
+  oldval = js_read(pathage, None)
+  oldval[key] = new_value
+  with open (pathage, "w") as jsfile:
+    rvfile = json.dumps(oldval, indent=2)
+    jsfile.write(rvfile)
+
+def js_create (pathage: str, name: str, jsdict: dict):
+  with open (f"{pathage}{name}.json", "w") as file:
+    jsfile = json.dumps(jsdict, indent=2)
+    file.write(jsfile)
 
 #------------|-------------------------------------------
 # LANGUAGE   |
