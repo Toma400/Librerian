@@ -47,7 +47,8 @@ def makeWindow(flayout): #| window initialiser
     window = gui.Window(title=m["name"], layout=flayout, margins=(700, 500),                         #| general
                         resizable=True, no_titlebar=not winSet(), keep_on_top=winSet(),              #| objects
                         background_color=mn_back, button_color=mn_butt,                              #| colours
-                        sbar_background_color=ls_scrl, sbar_arrow_color=mn_text, finalize=True)      #|
+                        sbar_background_color=ls_scrl, sbar_arrow_color=mn_text,                     #|
+                        finalize=True)
     # ^ stuff to add: resizable=True, maximized=dependent on settings
     if winSet(): window.maximize()
     return window

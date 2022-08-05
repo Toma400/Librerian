@@ -33,7 +33,7 @@ class Entry:
     # Main values | Must be overridden in entries deriving
     # -----------------------------------------------------
     entry_langkey = ""   #| plug-in users, please override it without "__" and provide translation in custom_langkey instead
-    folder_key    = ""   #| name of folder created in account dir, should not overlap other entries
+    folder_key    = ""   #| name of folder created in account dir, should not overlap other entries; recommended as fully lowercased
     # -----------------------------------------------------
     # Side values | Override in specific cases
     # -----------------------------------------------------
@@ -59,9 +59,9 @@ class Entry:
         self.id             = "" #| there should be func taking some stuff and creating name which would be easily recognisable + exclusive no matter the data
         #| initialised during creating new item (have no default value, need to be defined)
         #| initialised optionally (have default value)
-        self.comment        = Value("comment", trkey="", storage=comment)
-        self.tags           = Value("tags", trkey="", storage=tags)
-        self.avatar         = Value("avatar", trkey="", storage=avatar)       #| Name of the file, needs to be .png
+        self.comment        = Value("comment", trkey="entry__def_comment", storage=comment)
+        self.tags           = Value("tags",    trkey="entry__def_tags",    storage=tags)
+        self.avatar         = Value("avatar",  trkey="entry__def_avatar",  storage=avatar)       #| Name of the file, needs to be .png
         #| should have also function checking if folder within {user} exists, and if not, then create it + create the file + create
         #| images folder too +++ V look at the bottom for suggestion towards 'comment' part
 
@@ -76,22 +76,19 @@ class Entry:
         path = f"accounts/{user}/{self.folder_key}/images/{self.avatar}.png"
         pass
 
-    def return_attr(self): #| returns all custom variable names from the class
-        atrlist = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
-        return atrlist
-
     def return_val(self, value: str): #| direct caller for value inside Value class, using strings instead of direct call
-        package: Value = getattr(self, value)
-        return package.storage
+        package = getattr(self, value)
+        return package
 
     def change_val(self, value: str, new_val, return_old=False): #| no change_sysVal as they are not meant to be changed
         #if return_old: temp = self.return_val("value") else: temp = None
         pass #| it should have .json saving here for [value.storage: new_val]
         #if return_old: return temp
 
+    @DeprecationWarning
     def return_sysVal(self, value: str): #| direct caller for value inside SysValue class, using strings instead of direct call
         package: SysValue = getattr(self, value)
-        return package.storage
+        return package
 
     @staticmethod
     def interior_langkey(self, key, lang="English"):

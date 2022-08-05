@@ -2,9 +2,11 @@ from core.technical.repo_manag import tomlm as t; settings = t("settings.toml");
 from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme"] + ".toml")
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
 import os; spath = os.path.dirname(os.path.abspath("main.py")); fpath = spath + r"\core\icon32.png"
-from core.technical.repo_manag import dir_lister as repo
+from core.elements.entry_values import Value
 from core.technical.repo_manag import lang_reader as langtxt
+from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import file_lister
+from core.technical.entries_manag import return_attr
 from core.technical.log_manag import LibrerianError
 from core.elements.blank_entry import Entry
 import PySimpleGUI as gui
@@ -63,22 +65,22 @@ logadd_layout = [
 def menu_layout():
     modules = file_lister(f"entries/", ext="py")
     for x in modules: #| imports all modules from /entries/ folder
-        x1 = x.replace("\\", "."); x2 = x1.replace("\\", "."); log.debug(f"Module is being imported: [{x2}]")
+        x1 = x.replace("\\", "."); x2 = x1.replace("\\", ".")
         __import__(x2)
     templist = []
     for i in Entry.subclasses:
         log.info(f"Recognised entry of ID: [{i}]. Loading the entry...")
         #| Creating buttons for recognised entries
-        #|____________________________________________________________________________________________________________________
-        if "__" in i.entry_langkey:                                                       #| HANDLING FOR NATIVE ENTRIES     |
-            templist.append(                                                              #| --------------------------------|
-                [gui.Button(langtxt(i.entry_langkey, lang), key=f":{i.entry_langkey}")]   #| Takes value from lang file      |
-            ) #|_____________________________________________________________________________________________________________|
-        else:                                                                             #| HANDLING FOR PLUGIN ENTRIES     |
-            templist.append(                                                              #| --------------------------------|
-                [gui.Button(i.interior_langkey(self=i, key=i.entry_langkey, lang=lang),   #| Takes value from custom langkey |
-                 key=f":{i.interior_langkey(self=i, key=i.entry_langkey, lang=lang)}")]   #| dictionaries                    |
-            ) #|_____________________________________________________________________________________________________________|
+        #|______________________________________________________________________________________________________________________
+        if "__" in i.entry_langkey:                                                             #| HANDLING FOR NATIVE ENTRIES |
+            templist.append(                                                                    #| ----------------------------|
+                [gui.Button(langtxt(i.entry_langkey, lang), key=f":{i.folder_key}EntryButton")] #| Takes value from lang file  |
+            ) #|_______________________________________________________________________________________________________________|
+        else:                                                                                   #| HANDLING FOR PLUGIN ENTRIES |
+            templist.append(                                                                    #| ----------------------------|
+                [gui.Button(i.interior_langkey(self=i, key=i.entry_langkey, lang=lang),         #| Takes value from            |
+                 key=f":{i.folder_key}EntryButton")]   #| dictionaries                          #| custom langkey              |
+            ) #|_______________________________________________________________________________________________________________|
     layout = [
         [
             gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
@@ -140,7 +142,7 @@ def setchange_layout(el):
                 text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg,
                 highlight_background_color=ls_high
             )],
-            [gui.Button(langtxt("settings__confirm", lang), key=f":SetchangeConfirm{sign}")] #| NOT YET USED
+            [gui.Button(langtxt("settings__confirm", lang), key=f":SetchangeConfirm{sign}")]
         ]
     ]
     return layout
@@ -155,3 +157,77 @@ setlog_layout = [
             [gui.Button(langtxt("settings__confirm", lang), key=":SetchangeConfirmLogs")]
         ]
 ]
+
+#-------------------------------------------------
+# ENTRY SECTION
+#-------------------------------------------------
+def entrylist_layout(user, entry: Entry.subclasses):
+    evitems = file_lister(f"accounts/{user}/{entry.folder_key}/", "json"); eitems = []
+    for i in evitems:
+        i = i.replace("accounts/", ""); i = i.replace(f"{user}/", ""); i = i.replace(f"{entry.folder_key}\\", ""); i = i.replace("json", "")
+        eitems.append(i)
+    iditems = []
+    for i in eitems:
+        j = i + "ania"
+        iditems.append(j)
+    # this will require same treatment as previously - it will need to showcase names of the entries, but key return should be not translated nor valuated
+    # because values (inside json) cannot be exclusive - imagine title being exclusive, this would be ridiculous!
+    # ig there can be programs using several showcased values, check them for supportive help (like: NAME | DATE | EXTENSION, this wouldn't be possible without overriding one-keying)
+    temporarily_disabled_listbox = [
+            [gui.Listbox(
+                values=iditems, size=(0, 20), key=f":EntryItemsId",
+                text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg,
+                highlight_background_color=ls_high,
+                pad=(0, 0), no_scrollbar=True
+            )]
+    ]
+    #[gui.Column(listboxes, scrollable=True, vertical_scroll_only=True, key=f":EntryColumn")]
+    listbox = [
+            [gui.Listbox(
+                values=eitems, size=(40, 20), key=f":EntryItemsName",
+                text_color=ls_text, background_color=ls_back, highlight_text_color=ls_txhg,
+                highlight_background_color=ls_high
+            )]
+    ]
+    layout = [
+        [
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
+        ],
+        [
+            listbox
+        ],
+        [
+            [gui.Button(langtxt("entry__back_to_menu", lang), key=":BackToMenu")],
+            [gui.Button(langtxt("entry__new", lang), key=":EntryNew")]
+        ]
+    ]
+    return layout
+
+def entryadd_layout(user, entry: Entry.subclasses):
+    layvals = []; tempcl = entry()
+    vallist = return_attr(entry)
+    for i in vallist: #| iterates over all Value typed attrs to make their own sections on window
+        if "__" in entry.entry_langkey:                                                                                                      #------------------------
+            layval = [                                                                                                                       # NATIVE ENTRIES HANDLING
+                gui.Text(langtxt(tempcl.i.tr_key, lang), text_color=mn_text, background_color=mn_back),
+                gui.In(size=(25, 1), enable_events=True, key=f":{tempcl.i.val_idf}EntryFileCreate")
+            ]
+        else:                                                                                                                                #------------------------
+            layval = [                                                                                                                       # PLUGIN ENTRIES HANDLING
+                gui.Text(tempcl.interior_langkey(self=tempcl, key=tempcl.i.tr_key, lang=lang), text_color=mn_text, background_color=mn_back),
+                gui.In(size=(25, 1), enable_events=True, key=f":{tempcl.i.val_idf}EntryFileCreate")
+            ]
+        layvals.append(layval)
+    layout = [
+        [
+            gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
+        ],
+        [
+            layvals
+        ],
+        [
+            [gui.Button(langtxt("entry__confirm", lang), key=":EntryCreate")],
+            [gui.Button(langtxt("entry__return", lang), key=f":{entry.folder_key}EntryButton")]
+        ]
+    ]
+    return layout

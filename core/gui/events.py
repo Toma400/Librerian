@@ -1,5 +1,5 @@
-from core.gui.layouts import menu_layout, login_layout, settings_layout, setchange_layout
-from core.technical.repo_manag import lang_change, theme_change, log_change, reverseeng_lang, logs_deleting
+from core.gui.layouts import menu_layout, login_layout, settings_layout, setchange_layout, entrylist_layout, entryadd_layout
+from core.technical.repo_manag import lang_change, theme_change, log_change, reverseeng_lang, logs_deleting, file_lister
 import core.gui.layouts as layouts; import importlib
 from core.elements import account as acc
 from core.gui import window as window
@@ -7,7 +7,13 @@ from PySimpleGUI import Window
 import PySimpleGUI as gui
 import logging as log
 
-def eventReader(win: Window, event: str, values, accname=""):
+from core.elements.blank_entry import Entry
+imods = file_lister(f"entries/", ext="py") #| imports all modules from /entries/ folder
+for x in imods:
+    x1 = x.replace("\\", "."); x2 = x1.replace("\\", ".")
+    __import__(x2)
+
+def eventReader(win: Window, event: str, values, selentry: Entry.subclasses, accname=""):
     #-------------|------------------------------------------------------|
     # LOGGING     | win.run() and win.refresh() are ommited because they |
     # SECTION     | are predefined in main.py loop                       |
@@ -83,6 +89,38 @@ def eventReader(win: Window, event: str, values, accname=""):
     #| Coming back to menu
     elif event == ":BackToMenu":
         win.close(); win = window.runFWindow(menu_layout(), idf="Menu")
+    # -------------|------------------------------------------------------|
+    # ENTRY        |                                                      |
+    # SECTION      |                                                      |
+    # -------------|------------------------------------------------------|
+    elif event is not None and event.__contains__("EntryButton"):
+        scrap = event.replace("EntryButton", ""); scrap = scrap.replace(":", "")
+        for i in Entry.subclasses:
+            if i.folder_key == scrap:
+                selentry = i
+        win.close(); win = window.runFWindow(entrylist_layout(accname, selentry), idf=f"Entry List: [{selentry.folder_key}]")
+    elif event == ":EntryNew":
+        win.close(); win = window.runFWindow(entryadd_layout(accname, selentry), idf=f"Adding New Item for Entry: [{selentry.folder_key}]")
+    # -------------|------------------------------------------------------|
+    # UPDATERS     |                                                      |
+    # SECTION      |                                                      |
+    # -------------|------------------------------------------------------|
+    # Special function to handle events not doing any real change, but    |
+    # update status or return some valuable information                   |
+    # --------------------------------------------------------------------|
+    entrylist_updater = [":EntryItemsId", ":EntryItemsData"]
+    # V^ does not work anyway, lol
+    if event is not None and event in entrylist_updater:
+        print("!!!!!!!!!!!!!!!!!!!")
+        selects = win[event].get_indexes()
+        if not selects:
+            pass
+        else:
+            for key in entrylist_updater:
+                win[key].update(set_to_index=selects)
+        win.refresh()
+        win[":EntryColumn"].contents_changed()
+
     # -------------------------------------------------------------------|
     # Event finishing the program                                        |
     # -------------------------------------------------------------------|
