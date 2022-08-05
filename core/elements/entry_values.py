@@ -7,15 +7,11 @@
 #                 | SYSVALUE, in the other hand, is reserved for only few variables in Entry, and should not be changed even in terms of storage, as their
 #                 | values should altogether be immutable (they are required in stable state for program to run correctly).
 #-----------------|---------------------------------------------------------------------------------------------------------------------------------------
-class RawValue:
+class Value:
 
-    def __init__(self):
-        pass
-
-class Value(RawValue):
+    clp_id = True  # | Exclusive for Value class, for `return_attr` function
 
     def __init__(self, val_idf, trkey=None, storage=None, req=False):
-        super().__init__()
         self.val_idf  = val_idf  #| Exclusive name for value
         self.tr_key   = trkey    #| Translation key
         self.storage  = storage  #| User input

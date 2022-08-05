@@ -29,26 +29,25 @@ def dreturn_attr(entry: Entry.subclasses, limit: type = None):
             print (i)
             print (type(temp_instance.return_val(i)))
             print (limit)
-            print (id(type(temp_instance.return_val(i))))
-            print (id(limit))
             if type(temp_instance.return_val(i)) == limit: retlist.append(i)
-            #if isinstance(i, limit): retlist.append(i)
         print (retlist)
         return retlist                              #| they are returned as strings, so use return_val to use fully
     return atrlist
 
 def return_attr(entry: Entry.subclasses):
-    temp_instance = entry(); tempval = Value("temp_instance")
+    temp_instance = entry()
     atrlist = [attr for attr in dir(temp_instance) if not callable(getattr(temp_instance, attr)) and not attr.startswith("__")]
     retlist = []
     for i in atrlist:
+        try:
+            j = getattr(entry, i)
+            if j.clp_id: #| checks if variable is of Value type
+                retlist.append(i)
+        except AttributeError:
+            continue
         print (i)
-        print (type(temp_instance.return_val(i)))
-        print (type(tempval))
-        a = type(temp_instance.return_val(i))
-        b = type(tempval)
-        print (a.__bases__) #returns obj
-        print (b.__bases__) #returns superclass
-        #if type(temp_instance.return_val(i)) == type(tempval): retlist.append(i)
+        print (type(i))
     print (retlist)
-    return retlist                              #| they are returned as strings, so use return_val to use fully
+    return retlist
+
+#| they are returned as strings, so use return_val to use fully
