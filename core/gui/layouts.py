@@ -207,15 +207,17 @@ def entryadd_layout(user, entry: Entry.subclasses):
     layvals = []; tempcl = entry()
     vallist = return_attr(entry)
     for i in vallist: #| iterates over all Value typed attrs to make their own sections on window
+        valdict = getattr(tempcl, i)
+        vallang = valdict["val_key"]; valid = valdict["val_id"]
         if "__" in entry.entry_langkey:                                                                                                      #------------------------
             layval = [                                                                                                                       # NATIVE ENTRIES HANDLING
-                gui.Text(langtxt(tempcl.i.tr_key, lang), text_color=mn_text, background_color=mn_back),
-                gui.In(size=(25, 1), enable_events=True, key=f":{tempcl.i.val_idf}EntryFileCreate")
+                gui.Text(langtxt(vallang, lang), text_color=mn_text, background_color=mn_back),
+                gui.In(size=(25, 1), enable_events=True, key=f":{valid}EntryFileCreate")
             ]
         else:                                                                                                                                #------------------------
             layval = [                                                                                                                       # PLUGIN ENTRIES HANDLING
-                gui.Text(tempcl.interior_langkey(self=tempcl, key=tempcl.i.tr_key, lang=lang), text_color=mn_text, background_color=mn_back),
-                gui.In(size=(25, 1), enable_events=True, key=f":{tempcl.i.val_idf}EntryFileCreate")
+                gui.Text(tempcl.interior_langkey(self=tempcl, key=vallang, lang=lang), text_color=mn_text, background_color=mn_back),
+                gui.In(size=(25, 1), enable_events=True, key=f":{valid}EntryFileCreate")
             ]
         layvals.append(layval)
     layout = [

@@ -1,4 +1,4 @@
-from entry_values import Value, SysValue
+from entry_values import valueDict, Value, SysValue
 
 class Entry:
     subclasses = []
@@ -59,9 +59,9 @@ class Entry:
         self.id             = "" #| there should be func taking some stuff and creating name which would be easily recognisable + exclusive no matter the data
         #| initialised during creating new item (have no default value, need to be defined)
         #| initialised optionally (have default value)
-        self.comment        = Value("comment", trkey="entry__def_comment", storage=comment)
-        self.tags           = Value("tags",    trkey="entry__def_tags",    storage=tags)
-        self.avatar         = Value("avatar",  trkey="entry__def_avatar",  storage=avatar)       #| Name of the file, needs to be .png
+        self.comment        = valueDict(vid="comment", type="text", trkey="entry__def_comment", storage=comment)
+        self.tags           = valueDict(vid="tags",    type="list", trkey="entry__def_tags",    storage=tags)
+        self.avatar         = valueDict(vid="avatar",  type="link", trkey="entry__def_avatar",  storage=avatar)       #| Name of the file, needs to be .png
         #| should have also function checking if folder within {user} exists, and if not, then create it + create the file + create
         #| images folder too +++ V look at the bottom for suggestion towards 'comment' part
 

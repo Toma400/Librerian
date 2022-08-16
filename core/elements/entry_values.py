@@ -7,6 +7,23 @@
 #                 | SYSVALUE, in the other hand, is reserved for only few variables in Entry, and should not be changed even in terms of storage, as their
 #                 | values should altogether be immutable (they are required in stable state for program to run correctly).
 #-----------------|---------------------------------------------------------------------------------------------------------------------------------------
+'''
+    example_value = {
+        val_dict:    "type_of_valdict"  # type explained below
+        val_key:     ""                 # translation key
+        val_storage: ---                # fixed, but usually Null by default
+    }
+'''
+
+def valueDict(vid: str, type: str, trkey: str, storage=None):
+    valdict = {
+        "val_id":      vid,
+        "val_dict":    type,
+        "val_key":     trkey,
+        "val_storage": storage
+    }
+    return valdict
+
 class Value:
 
     clp_id = True  # | Exclusive for Value class, for `return_attr` function

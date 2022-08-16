@@ -34,20 +34,31 @@ def dreturn_attr(entry: Entry.subclasses, limit: type = None):
         return retlist                              #| they are returned as strings, so use return_val to use fully
     return atrlist
 
-def return_attr(entry: Entry.subclasses):
+@Deprecated("core.technical.entries_manag::return_attr")
+def d2return_attr(entry: Entry.subclasses):
     temp_instance = entry()
     atrlist = [attr for attr in dir(temp_instance) if not callable(getattr(temp_instance, attr)) and not attr.startswith("__")]
     retlist = []
+    print (atrlist)
     for i in atrlist:
+        j = getattr(temp_instance, i)
+        print (j)
+        print (type(j))
         try:
-            j = getattr(entry, i)
             if j.clp_id: #| checks if variable is of Value type
                 retlist.append(i)
         except AttributeError:
             continue
-        print (i)
-        print (type(i))
     print (retlist)
     return retlist
 
-#| they are returned as strings, so use return_val to use fully
+def return_attr(entry: Entry.subclasses):
+    temp_instance = entry()
+    atrlist = [attr for attr in dir(temp_instance) if not callable(getattr(temp_instance, attr)) and not attr.startswith("__")]
+    #| ^ list of variables through strings, so you need to still use getattr() function
+    retlist = []
+    for i in atrlist:
+        j = getattr(temp_instance, i)             #| takes content from each variable
+        if type(j) is dict:
+            if "val_dict" in j: retlist.append(i) #| checks if variable is of ValueDict type by examining if there's "val_dict" key
+    return retlist

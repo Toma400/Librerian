@@ -1,16 +1,20 @@
-#---------------|----------------------------------
+#---------------|-------------------------------------
 # DEV BUILDS    |
-#===============|==================================
+#===============|=====================================
+0.3
+====
+ - Revamped entry system to implement them fully
+
 0.2
 ====
  - Created Librerian menu
- - Added recognition of entries (including plugins)
+ - Added recognition of categories (including plugins)
    to Librerian system
- - Refactored entries localisation
+ - Refactored categories localisation
  - Created Librerian settings, allowing for change
    of language, theme and customise logs
  - Added few decorators to identify deprecation
----------------------------------------------------
+-------------------------------------------------------
 0.1
 ====
  - Added account selection menu
@@ -18,4 +22,4 @@
  - Added logging system
  - Added language support
  - Added custom theme support
-===================================================
+=======================================================
