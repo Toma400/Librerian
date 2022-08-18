@@ -1,6 +1,4 @@
 from core.elements.blank_entry import Entry
-from core.elements.entry_values import Value
-from core.technical.log_manag import Deprecated
 #-------------|---------------------------------------------------------------------
 # SETTINGS    | This class is used as element called by menu_layout() and is meant
 #             | to represent its functionalities
@@ -20,37 +18,6 @@ from core.technical.log_manag import Deprecated
 #----------------------------------------------------|--------------------------------------------------------------------
 # Returns all custom attribute names from the class  | Set 'limit' to type if you want to specify required type of value
 #----------------------------------------------------|--------------------------------------------------------------------
-@Deprecated("core.technical.entries_manag::return_attr")
-def dreturn_attr(entry: Entry.subclasses, limit: type = None):
-    temp_instance = entry(); atrlist = [attr for attr in dir(temp_instance) if not callable(getattr(temp_instance, attr)) and not attr.startswith("__")]
-    retlist = []
-    if limit is not None:
-        for i in atrlist:
-            print (i)
-            print (type(temp_instance.return_val(i)))
-            print (limit)
-            if type(temp_instance.return_val(i)) == limit: retlist.append(i)
-        print (retlist)
-        return retlist                              #| they are returned as strings, so use return_val to use fully
-    return atrlist
-
-@Deprecated("core.technical.entries_manag::return_attr")
-def d2return_attr(entry: Entry.subclasses):
-    temp_instance = entry()
-    atrlist = [attr for attr in dir(temp_instance) if not callable(getattr(temp_instance, attr)) and not attr.startswith("__")]
-    retlist = []
-    print (atrlist)
-    for i in atrlist:
-        j = getattr(temp_instance, i)
-        print (j)
-        print (type(j))
-        try:
-            if j.clp_id: #| checks if variable is of Value type
-                retlist.append(i)
-        except AttributeError:
-            continue
-    print (retlist)
-    return retlist
 
 def return_attr(entry: Entry.subclasses):
     temp_instance = entry()
