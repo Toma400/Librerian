@@ -4,6 +4,9 @@
 0.3
 ====
  - Revamped entry system to implement them fully
+ - Added theme support for input menus
+   * Theme creators need to adjust their themes
+     to the addition
 
 0.2
 ====

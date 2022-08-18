@@ -15,7 +15,7 @@
     }
 '''
 
-def valueDict(vid: str, type: str, trkey: str, storage=None):
+def ValueDict(vid: str, type: str, trkey: str, storage=None):
     valdict = {
         "val_id":      vid,
         "val_dict":    type,
@@ -23,23 +23,6 @@ def valueDict(vid: str, type: str, trkey: str, storage=None):
         "val_storage": storage
     }
     return valdict
-
-class Value:
-
-    clp_id = True  # | Exclusive for Value class, for `return_attr` function
-
-    def __init__(self, val_idf, trkey=None, storage=None, req=False):
-        self.val_idf  = val_idf  #| Exclusive name for value
-        self.tr_key   = trkey    #| Translation key
-        self.storage  = storage  #| User input
-        self.req      = req      #| Tells if it is required
-
-class SysValue:
-
-    def __init__(self, val_idf, storage=None, req=False):
-        self.val_idf  = val_idf  # | Exclusive name for value
-        self.storage  = storage  # | User input
-        self.req      = req  # | Tells if it is required
 
 class LibrFile:
 

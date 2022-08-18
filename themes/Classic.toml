@@ -20,3 +20,7 @@ background_colour       = "#D1C4B4" #| D1C4B4
 highlight_colour        = "#E2B277" #| E2B277
 text_highlight_colour   = "#8D540D" #| 8D540D
 scroll_colour           = "#60482B" #| 60482B
+
+[Input]
+text_colour             = "#8C703D" #| 8C703D
+background_colour       = "#E7D6B7" #| E7D6B7

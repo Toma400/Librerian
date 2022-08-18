@@ -2,7 +2,6 @@ from core.technical.repo_manag import tomlm as t; settings = t("settings.toml");
 from core.technical.repo_manag import tomlm as t; theme = t("themes/" + s["theme"] + ".toml")
 from core.technical.repo_manag import tomlm as t; m = t("init.toml")
 import os; spath = os.path.dirname(os.path.abspath("main.py")); fpath = spath + r"\core\icon32.png"
-from core.elements.entry_values import Value
 from core.technical.repo_manag import lang_reader as langtxt
 from core.technical.repo_manag import dir_lister as repo
 from core.technical.repo_manag import file_lister
@@ -11,7 +10,6 @@ from core.technical.log_manag import LibrerianError
 from core.elements.blank_entry import Entry
 import PySimpleGUI as gui
 import logging as log
-import importlib
 
 #--------------|----------------------------------
 # THEME        |
@@ -26,6 +24,8 @@ ls_back = (theme["List"])["background_colour"]
 ls_high = (theme["List"])["highlight_colour"]
 ls_txhg = (theme["List"])["text_highlight_colour"]
 ls_scrl = (theme["List"])["scroll_colour"]
+in_text = (theme["Input"])["text_colour"]
+in_back = (theme["Input"])["background_colour"]
 
 #--------------|----------------------------------
 # LAYOUTS      | Used by PySimpleGUI
@@ -55,8 +55,8 @@ logadd_layout = [
         ],
         [
             [gui.Text(langtxt("login__new_account", lang), text_color=mn_text, background_color=mn_back),
-             gui.In(size=(25, 1), enable_events=True, key=":NewAccountName")],
-            [gui.Button(langtxt("login__confirm", lang), key=":ConfirmAccountCreation")]
+             gui.In(size=(25, 1), enable_events=True, key=":NewAccountName", text_color=in_text, background_color=in_back)],
+            [gui.Button(langtxt("login__confirm", lang), key=":ConfirmAccountCreation"), gui.Button(langtxt("login__back", lang), key=":RejectAccountCreation")]
         ]
 ]
 #-------------------------------------------------
@@ -153,7 +153,7 @@ setlog_layout = [
         ],
         [
             [gui.Text(langtxt("settings__logs_limit", lang), text_color=mn_text, background_color=mn_back),
-             gui.In(size=(25, 1), enable_events=True, key=":LogsSetNumber")],
+             gui.In(size=(25, 1), enable_events=True, key=":LogsSetNumber", text_color=in_text, background_color=in_back)],
             [gui.Button(langtxt("settings__confirm", lang), key=":SetchangeConfirmLogs")]
         ]
 ]
@@ -197,8 +197,8 @@ def entrylist_layout(user, entry: Entry.subclasses):
             listbox
         ],
         [
-            [gui.Button(langtxt("entry__back_to_menu", lang), key=":BackToMenu")],
-            [gui.Button(langtxt("entry__new", lang), key=":EntryNew")]
+            [gui.Button(langtxt("entry__back_to_menu", lang), key=":BackToMenu"),
+             gui.Button(langtxt("entry__new", lang), key=":EntryNew")]
         ]
     ]
     return layout
@@ -209,27 +209,39 @@ def entryadd_layout(user, entry: Entry.subclasses):
     for i in vallist: #| iterates over all Value typed attrs to make their own sections on window
         valdict = getattr(tempcl, i)
         vallang = valdict["val_key"]; valid = valdict["val_id"]
-        if "__" in entry.entry_langkey:                                                                                                      #------------------------
+        if "__" in vallang:                                                                                                                  #------------------------
             layval = [                                                                                                                       # NATIVE ENTRIES HANDLING
                 gui.Text(langtxt(vallang, lang), text_color=mn_text, background_color=mn_back),
-                gui.In(size=(25, 1), enable_events=True, key=f":{valid}EntryFileCreate")
+                gui.In(size=(25, 1), enable_events=True, key=f":{valid}EntryFileCreate", text_color=in_text, background_color=in_back)
             ]
         else:                                                                                                                                #------------------------
             layval = [                                                                                                                       # PLUGIN ENTRIES HANDLING
                 gui.Text(tempcl.interior_langkey(self=tempcl, key=vallang, lang=lang), text_color=mn_text, background_color=mn_back),
-                gui.In(size=(25, 1), enable_events=True, key=f":{valid}EntryFileCreate")
+                gui.In(size=(25, 1), enable_events=True, key=f":{valid}EntryFileCreate", text_color=in_text, background_color=in_back)
             ]
         layvals.append(layval)
+    #| creating header
+    introtxt1 = langtxt("entry__new_intro", lang) #| "Creating new..." pretext, with changed second section depending on entry name set below:
+    if "__" in tempcl.entry_langkey: introtxt2 = langtxt(tempcl.entry_langkey + "_new", lang=lang)  #| Searches for correct naming, depending if entry is native
+    else: introtxt2 = tempcl.interior_langkey(self=tempcl, key=tempcl.entry_langkey + "_new", lang=lang) #| ...or plugin
+    layintro = [
+        gui.Text(introtxt1 + introtxt2, text_color=mn_text, background_color=mn_back)
+    ]
+    #|----------------------
+    #| main layout creating
     layout = [
         [
             gui.Titlebar(m["name"], text_color=tt_text, background_color=tt_back, icon=fpath)
         ],
         [
+            layintro
+        ],
+        [
             layvals
         ],
         [
-            [gui.Button(langtxt("entry__confirm", lang), key=":EntryCreate")],
-            [gui.Button(langtxt("entry__return", lang), key=f":{entry.folder_key}EntryButton")]
+            [gui.Button(langtxt("entry__confirm", lang), key=":EntryCreate"),
+             gui.Button(langtxt("entry__return", lang), key=f":{entry.folder_key}EntryButton")]
         ]
     ]
     return layout

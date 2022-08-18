@@ -29,6 +29,8 @@ def eventReader(win: Window, event: str, values, selentry: Entry.subclasses, acc
     elif event == ":ConfirmAccountCreation":
         acname = values[":NewAccountName"]; result = acc.createAccount(acname)
         if result: win.close(); win = window.runFWindow(login_layout(), idf="Login")
+    elif event == ":RejectAccountCreation":
+        win.close(); win = window.runFWindow(login_layout(), idf="Login")
     # -------------------------------------------------------------------|
     # Event passing account name to further use; operated on main.py     |
     # module actually                                                    |
