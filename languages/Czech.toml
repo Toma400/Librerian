@@ -1,0 +1,36 @@
+# ---------------------------------------------------------------------------
+# LANGUAGE FILE
+# ------------------------
+# Language files are meant to support multilingualistic experience for
+# Librerian. They can have any name supported by Librerian natively, or
+# any name ever, if you edit 'settings.toml' manually.
+#
+# Keys in this file are used for user interface, so be sure to not remove
+# any of them.
+# ---------------------------------------------------------------------------
+
+#| Translators in key below should replace "English" with their respective
+#| language, and translate it (so, Polish would have "Polski" there)
+current__language     = "Čeština" #| This value cannot overlap in other langfiles
+
+login__choose_account = "Vyberte svůj účet"
+login__enter          = "Vstoupit"
+login__add            = "Přidejte nový účet"
+login__new_account    = "Zadejte název účtu"
+login__confirm        = "Potvrdit"
+
+menu__settings        = "Nastavení"
+menu__donate          = "Podpořte autora"
+menu__exit            = "Opustit"
+
+settings__languages   = "Změnit jazyk"
+settings__themes      = "Změnit téma"
+settings__confirm     = "Potvrdit"
+settings__lang        = "Vyberte jazyk"
+settings__theme       = "Vyberte téma"
+settings__window      = "Přepnout na celou obrazovku"
+settings__logs        = "Vyberte limit protokolů"
+settings__logs_delete = "Odstraňte protokoly"
+settings__logs_limit  = "Zadejte číslo (větší než 0)"
+
+entry__book           = "Knihy"
