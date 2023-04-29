@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<!--
+Changes:
+- Link colours depending on theme
+-->
 <html>
 <style>
     a:link    { color: #7BA21B; background-color: transparent; text-decoration: none; }
     a:visited { color: #5C7610; background-color: transparent; text-decoration: none; }
+    button    { color: #7BA21B; background-color: #261b07 }
 </style>
 <head>
 <title>Librerian Guide</title>
@@ -11,12 +16,18 @@
 <body bgcolor="#5a5923" text="#261b07">
 <script>
 function themes(color) {
-    if (color === "default") { document.body.style.backgroundColor = "#5a5923"; document.body.style.color = "#261b07" }
-    if (color === "libre")   { document.body.style.backgroundColor = "#60482B"; document.body.style.color = "#C4A989" }
-    if (color === "light")   { document.body.style.backgroundColor = "transparent"; document.body.style.color = "black" }
-    if (color === "ddark")   { document.body.style.backgroundColor = "#1F211E"; document.body.style.color = "#1B9EA2" }
-    if (color === "cdark")   { document.body.style.backgroundColor = "#1F211E"; document.body.style.color = "powderblue" }
-    if (color === "aqua")    { document.body.style.backgroundColor = "#101e3c"; document.body.style.color = "#117da2" }
+    if (color === "default") { document.body.style.backgroundColor = "#5a5923";     document.body.style.color = "#261b07";    button_theme("#261b07", "#7BA21B") }
+    if (color === "libre")   { document.body.style.backgroundColor = "#60482B";     document.body.style.color = "#C4A989";    button_theme("#261b07", "#C4A989") }
+    if (color === "light")   { document.body.style.backgroundColor = "transparent"; document.body.style.color = "black";      button_theme("#261b07", "#FFFFFF") }
+    if (color === "ddark")   { document.body.style.backgroundColor = "#1F211E";     document.body.style.color = "#1B9EA2";    button_theme("#261b07", "#1B9EA2") }
+    if (color === "cdark")   { document.body.style.backgroundColor = "#1F211E";     document.body.style.color = "powderblue"; button_theme("#261b07", "powderblue") }
+    if (color === "aqua")    { document.body.style.backgroundColor = "#101e3c";     document.body.style.color = "#117da2";    button_theme("#101e3c", "#117da2") }
+}
+function button_theme(bg_color, txt_color) {
+    Array.from(document.querySelectorAll('button')).map(function(button) {
+        button.style.backgroundColor = bg_color;
+        button.style.color = txt_color;
+    })
 }
 </script>
 <table align="center" border="1px solid black" width="100%">
@@ -34,6 +45,7 @@ function themes(color) {
             <button type="button" onclick="themes('light')">Light</button>
             <button type="button" onclick="themes('ddark')">Dark</button>
             <button type="button" onclick="themes('cdark')">Contrast Dark</button>
+            <button type="button" onclick="themes('aqua')">Subnautical</button>
         </th>
     </tr>
 </table>
