@@ -43,7 +43,7 @@ function themes(color) {
     <font size="+3">⬖</font>
 </center>
 <p>
-    <h1><center>Welcome in Librerian Guide!</center></h1>
+    <h1 id="start"><center>Welcome in Librerian Guide!</center></h1>
 
     Although usual Librerian experience was made to be as simple as possible, you can still want to find some clarification, or
     tutorial on a bit more complex elements of the program.
@@ -51,11 +51,11 @@ function themes(color) {
     <hr>
     <h2><center>Table of contents:</center></h2>
     <ul>
-        <li>What is Librerian?</li>
-        <li>Custom themes</li>
-        <li>Translation contributions</li>
-        <li>Adding new types of data</li>
-        <li>Settings use</li>
+        <li><a href="#what_is">What is Librerian?</a></li>
+        <li><a href="#themes">Custom themes</a></li>
+        <li><a href="#translations">Translation contributions</a></li>
+        <li><a href="#plugins">Adding new types of data</a></li>
+        <li><a href="#settings">Settings use</a></li>
     </ul>
 
     <hr>
@@ -68,7 +68,7 @@ function themes(color) {
     </center>
 
     <hr>
-    <center><h2>What is Librarian?</h2></center>
+    <center><h2 id="what_is">What is Librarian?</h2></center>
 
     <b>Librarian</b> is free, open-source software developed by Tomasz Stępień (known also by nickname Toma400) since 2022.<br>
     It is <b>culture collection manager</b>, as I like to call it, allowing you to create library of various elements of culture
@@ -83,8 +83,9 @@ function themes(color) {
 
     So, about the customisation, let's look what is currently available (in dev-builds).
 
+    <br><br><center><a href="#start">⇧</a></center>
     <hr>
-    <center><h2>Custom themes</h2></center>
+    <center><h2 id="themes">Custom themes</h2></center>
 
     One of currently available customisations you can already create is <b>theme</b>, being palette of colours used by the program to showcase
     whole interface.<br>
@@ -118,8 +119,9 @@ function themes(color) {
     "#|" signifies comment, which - in this case - shows default value of the theme. Because yes, if you would like to change already available
     themes, you can work on it. Commented default values are here to help you if you'd feel you preferred old version of the theme.
 
+    <br><br><center><a href="#start">⇧</a></center>
     <hr>
-    <center><h2>Translation contributions</h2></center>
+    <center><h2 id="translations">Translation contributions</h2></center>
 
     Librerian is made for English language, but it does support other languages thanks to modular system. Basically
     any .toml file you put in <code>languages</code> folder is recognised as language file. The way it works is really similar to themes, actually.<br><br>
@@ -129,8 +131,9 @@ function themes(color) {
     Absolutely! Unfortunately, until development stage is over, I will not make Librerian GitHub public. This makes translation contributions a bit more tricky.<br>
     But worry not. At the top section, I gave you some ways to contact me - and although this way of contribution is harder, it will be greatly appreciated as well.
 
+    <br><br><center><a href="#start">⇧</a></center>
     <hr>
-    <center><h2>Adding new types of data</h2></center>
+    <center><h2 id="plugins">Adding new types of data</h2></center>
 
     <b>Be aware that - even if there's tutorial here on how to create entries - during Dev-Builds, Alpha and Beta, major changes may come, resulting on you
     needing to redo your Entry to work correctly. If something like this is done, there will be migration guide for it published, though.</b><br><br>
@@ -153,11 +156,11 @@ function themes(color) {
     <br><br><center>
     <b>As of right now Entry creation is incomplete, so it is not possible to create anything but
         useless blueprint. I do not recommend creating Entries in current dev-build version, as a lot of code can be refactored in next one.</b></center>
-
-    <br><br>
+    <br>
+    <center><a href="#start">⇧</a></center>
 
     <hr>
-    <center><h2>Settings use</h2></center>
+    <center><h2 id="settings">Settings use</h2></center>
 
     Nowadays, most Librerian settings are accessible within it itself. However, if you would like to manually access settings (without running the program),
     you can edit <code>settings.toml</code> file.<br><br>
@@ -175,6 +178,7 @@ function themes(color) {
         <li><b>theme</b> - themes are colour palettes creating Librerian's look. Themes are stored in <code>themes</code> folder, and name you put in settings should be the same as file in said folder
         <li><b>window</b> - this setting changes whether or not Librerian opens with full screen, or minimised. Setting here takes <code>Fullscreen</code> value (for full screen) or <code>Small</code> (for minimised). Use of different value will make window use default value (minimised)
     </ul>
+    <center><a href="#start">⇧</a></center>
     <hr>
 
 </p>
