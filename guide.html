@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
+<style>
+    a:link    { color: #7BA21B; background-color: transparent; text-decoration: none; }
+    a:visited { color: #5C7610; background-color: transparent; text-decoration: none; }
+</style>
 <head>
 <title>Librerian Guide</title>
 </head>
-<body>
-<h1><center>Librerian Guide</center></h1>
+<body bgcolor="#5a5923" text="#261b07">
+<script>
+function themes(color) {
+    if (color === "default") { document.body.style.backgroundColor = "#5a5923"; document.body.style.color = "#261b07" }
+    if (color === "libre")   { document.body.style.backgroundColor = "#60482B"; document.body.style.color = "#C4A989" }
+    if (color === "light")   { document.body.style.backgroundColor = "transparent"; document.body.style.color = "black" }
+    if (color === "ddark")   { document.body.style.backgroundColor = "#1F211E"; document.body.style.color = "#1B9EA2" }
+    if (color === "cdark")   { document.body.style.backgroundColor = "#1F211E"; document.body.style.color = "powderblue" }
+    if (color === "aqua")    { document.body.style.backgroundColor = "#101e3c"; document.body.style.color = "#117da2" }
+}
+</script>
+<table align="center" border="1px solid black" width="100%">
+    <tr align="center">
+        <th align="center">
+            <font size="+3">Guide Settings</font>
+            <br>
+            Themes:
+        </th>
+    </tr>
+    <tr align="center">
+        <th>
+            <button type="button" onclick="themes('default')">Default</button>
+            <button type="button" onclick="themes('libre')">Librerian</button>
+            <button type="button" onclick="themes('light')">Light</button>
+            <button type="button" onclick="themes('ddark')">Dark</button>
+            <button type="button" onclick="themes('cdark')">Contrast Dark</button>
+        </th>
+    </tr>
+</table>
 <center>
-    <img src="core/icon.png" class="center" width="200" height="200">
+    <img src="readme.jpg" class="center" width="90%" height=self.width/2>
+    <img src="librerian.png" class="center" width="90%" height=self.width/4><br>
+    <font size="+3">⬖</font>
 </center>
 <p>
-    <h1>Welcome in Librerian Guide!</h1>
+    <h1><center>Welcome in Librerian Guide!</center></h1>
 
     Although usual Librerian experience was made to be as simple as possible, you can still want to find some clarification, or
     tutorial on a bit more complex elements of the program.
 
     <hr>
-    <h2>Table of contents:</h2>
+    <h2><center>Table of contents:</center></h2>
     <ul>
         <li>What is Librerian?</li>
         <li>Custom themes</li>
@@ -25,18 +58,16 @@
         <li>Settings use</li>
     </ul>
 
-    <hr><br>
-    <center><h2>Contact</h2></center>
+    <hr>
+    <center><h2>Socials & Contact</h2></center>
 
     <center>
-    <a href="https://discord.gg/GbTw9KqnrE"><b>Discord server</b></a><br>
-    <a href="https://twitter.com/TheTrueToma400"><b>Twitter</b></a><br>
-    <a href="https://github.com/Toma400/Librerian"><b>GitHub</b></a> | currently private<br>
-    <a href="mailto:thomasso_calgori@o2.pl"><b>Mail</b></a> | thomasso_calgori@o2.pl<br><br>
-    Those are some links you can find useful if you'd like to contact me in any way.
+    <a href="https://linktr.ee/toma400"><img src="https://img.shields.io/badge/%20-Linktree%20-108931?style=plastic&logo=appveyor"></a>
+    <a href="https://discord.gg/GbTw9KqnrE"><img src="https://img.shields.io/discord/842338281692725268?color=AA16D1&label=%20&logo=Discord&logoColor=DDD4EA&style=plastic"></a>
+    <a href="https://github.com/Toma400/Librerian"><img src="https://img.shields.io/badge/GitHub-Repository-blueviolet?style=plastic&logo=github"></a>
     </center>
 
-    <hr><br>
+    <hr>
     <center><h2>What is Librarian?</h2></center>
 
     <b>Librarian</b> is free, open-source software developed by Tomasz Stępień (known also by nickname Toma400) since 2022.<br>
@@ -52,7 +83,7 @@
 
     So, about the customisation, let's look what is currently available (in dev-builds).
 
-    <hr><br>
+    <hr>
     <center><h2>Custom themes</h2></center>
 
     One of currently available customisations you can already create is <b>theme</b>, being palette of colours used by the program to showcase
@@ -87,7 +118,7 @@
     "#|" signifies comment, which - in this case - shows default value of the theme. Because yes, if you would like to change already available
     themes, you can work on it. Commented default values are here to help you if you'd feel you preferred old version of the theme.
 
-    <hr><br>
+    <hr>
     <center><h2>Translation contributions</h2></center>
 
     Librerian is made for English language, but it does support other languages thanks to modular system. Basically
@@ -98,7 +129,7 @@
     Absolutely! Unfortunately, until development stage is over, I will not make Librerian GitHub public. This makes translation contributions a bit more tricky.<br>
     But worry not. At the top section, I gave you some ways to contact me - and although this way of contribution is harder, it will be greatly appreciated as well.
 
-    <hr><br>
+    <hr>
     <center><h2>Adding new types of data</h2></center>
 
     <b>Be aware that - even if there's tutorial here on how to create entries - during Dev-Builds, Alpha and Beta, major changes may come, resulting on you
@@ -113,9 +144,10 @@
     Even though this sounds terrible, it is not as difficult as you may think of it after reading. Open <code>/core/elements/</code> folder. You should be
     able to find both <code>blank_entry.py</code> and <code>example_plugin.py</code> files. Remember those.<br><br>
 
-    <span style="color:#6F419E"><b>blank_entry.py</b></span> is your main reference, since most of plugins will refer to this exact file, and most of explanations you will need, are documented
+    <!-- Previous colour: #6F419E-->
+    <span style="color:#21A218"><b>blank_entry.py</b></span> is your main reference, since most of plugins will refer to this exact file, and most of explanations you will need, are documented
     exactly there (in comments).<br>
-    And <span style="color:#6F419E"><b>example_plugin.py</b></span> is example of how plugin entry looks - with even more explanations to each element, since this is meant to be learning tool for you.
+    And <span style="color:#21A218"><b>example_plugin.py</b></span> is example of how plugin entry looks - with even more explanations to each element, since this is meant to be learning tool for you.
     You can copy it over to <code>/entries/</code> folder and see all its values working, too.
 
     <br><br><center>
@@ -124,7 +156,7 @@
 
     <br><br>
 
-    <hr><br>
+    <hr>
     <center><h2>Settings use</h2></center>
 
     Nowadays, most Librerian settings are accessible within it itself. However, if you would like to manually access settings (without running the program),
